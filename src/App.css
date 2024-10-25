@@ -1,3 +1,31 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities"; 
+
+body{
+  background: linear-gradient(rgba(0, 0, 0, 0.868), rgba(0, 0, 0, 0.744)),url('/img/bg1.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+/* topview */
+
+.userOptions{
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 200px;
+}
+
+
+.userProfile:hover .userOptions{
+  display: block;
+}
+
+.userOptions{
+  --site-sub-nav-offset: 18px;
+}
