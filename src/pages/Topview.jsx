@@ -18,13 +18,15 @@ export function Topview(){
   };
 
   return(
-    <>
-    <nav className="w-full    py-4 flex justify-evenly items-center">
-      <img src="/img/todoLogo.webp" alt="temporal logo" className="w-[30px] rounded-3xl sm:w-[40px] "/>
+  <>
+    <nav className="w-full    py-4 flex justify-evenly items-center ">
+
+
+  <img src="/img/todoLogo.webp" alt="temporal logo" className="w-[30px] rounded-3xl sm:w-[40px] "/>
 
 
 
-      <form class=" w-2/4">   
+  <form class=" w-2/4">   
     <div class="relative">
         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -33,10 +35,9 @@ export function Topview(){
         </div>
         <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm bg-gradient-to-b from-black bg-gray-700 bg-opacity-50 text-white rounded-3xl " placeholder="Search Tasks" required />
     </div>
-</form>
+  </form>
 
 
-        
 
       {profile &&
       <>
