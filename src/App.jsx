@@ -8,11 +8,11 @@ import { useState,createContext, useEffect, useContext} from 'react'
 import { Homepage } from './pages/homepage'
 import { Today } from './pages/Today'
 import { ErrorPage } from './pages/ErrorPage'
-import { Login } from './pages/Login'
-import { Topview } from './pages/Topview';
+import { Login } from './features/Login'
+import { Topview } from './sections/Topview';
 import { Finished } from './pages/Finished';
 import { CurrentDate } from './utils/Date';
-import { AiView } from './pages/AiView';
+import { AiView } from './sections/AiView';
 import { BottomTask, AddTask } from './components/BottomTask';
 import { NavItem } from './components/NavItem';
 

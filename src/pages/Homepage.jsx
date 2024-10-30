@@ -1,4 +1,4 @@
-import { Topview } from './Topview';
+import { Topview } from '../sections/Topview';
 
 
 export function Homepage(){
