@@ -1,10 +1,14 @@
+import { NavButton } from './NavButton';
+import { TodayButton } from './TodayButton';
 
-export function NavItem({img}){
+export function NavItem({day}){
 
   return(
     <>
-    
-    <h1>Page not found</h1>
+       <NavButton  img={'homeIcon.svg'} to={'/'} />
+        <NavButton buttonValidation img={'addtaskIcon.svg'} />
+        <TodayButton date={day} />
+        <NavButton  img={'doneIcon.svg'} to={'/finished'}/>
     </>
   )
 }

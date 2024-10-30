@@ -11,10 +11,10 @@ import { ErrorPage } from './pages/ErrorPage'
 import { Login } from './pages/Login'
 import { Topview } from './pages/Topview';
 import { Finished } from './pages/Finished';
-import { TodayButton } from './components/TodayButton';
 import { CurrentDate } from './utils/Date';
 import { AiView } from './pages/AiView';
-
+import { BottomTask, AddTask } from './components/BottomTask';
+import { NavItem } from './components/NavItem';
 
 export const APPContext  = createContext();
 
@@ -23,7 +23,7 @@ function App() {
   const [ user, setUser ] = useState('');
   const [ profile, setProfile ] = useState('');
   const [day, setDay] = useState('');
-
+  const [activeTask, setActiveTask] = useState('')
 
 
   
@@ -76,14 +76,8 @@ function App() {
       mx-auto my-0 opacity-90 
        lg:flex-col lg:relative '>
 
-
-        <Link to="/" ><img src="/img/homeIcon.svg" alt="" className='w-[40px] h-[40px] hover:bg-orange-700 hover:bg-opacity-60 rounded-3xl p-1          transition-all hover:scale-110'/></Link>
-
-        <button><img src="img/addtaskIcon.svg" className='w-[40px] h-[40px] hover:bg-orange-700 hover:bg-opacity-60 rounded-3xl p-1 transition-all hover:scale-110' alt="" /></button>
-
-        <TodayButton date={day} />
-
-        <Link to="/finished"><img src="/img/doneIcon.svg" alt="" className='w-[40px] h-[40px] hover:bg-orange-700 hover:bg-opacity-60 rounded-3xl p-1 transition-all hover:scale-110'/></Link>
+      
+      <NavItem day={day}/>
         
       </ul>
       </section>
@@ -109,6 +103,13 @@ function App() {
 
       </section>
 
+      <div>
+
+      <AddTask/>
+
+      <BottomTask />
+
+      </div>
     </>}
 
 
