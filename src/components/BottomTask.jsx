@@ -16,7 +16,7 @@ export function BottomTask({handleTask}){
     className="flex justify-start items-center 
    bg-gradient-to-b from-black bg-gray-700 border 
    bg-opacity-50 w-2/4 mx-auto my-0 inset-y-0 text-xl rounded-3xl  border-white -translate-x-14 p-1">
-      <img src="src/assets/icons/addtaskIcon.svg" 
+      <img src="/src/assets/icons/addtaskIcon.svg" 
       className='w-[40px] h-[40px] 
         rounded-3xl p-1 transition-all
         ' alt="" />
