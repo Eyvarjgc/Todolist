@@ -2,6 +2,16 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities"; 
 
+/* GOOGLE FONT */
+
+
+.orbitron{
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
 body{
   background: linear-gradient(rgba(0, 0, 0, 0.868), rgba(0, 0, 0, 0.744)),url('/img/bg1.svg');
   background-position: center;
