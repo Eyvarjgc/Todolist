@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useState,createContext, useEffect, useContext} from 'react'
 
 // PAGES
-import { Homepage } from './pages/homepage'
+import { Homepage } from './pages/Homepage';
 import { Today } from './pages/Today'
 import { ErrorPage } from './pages/ErrorPage'
 import { Login } from './features/Login'
@@ -14,16 +14,18 @@ import { Finished } from './pages/Finished';
 import { CurrentDate } from './utils/Date';
 import { AiView } from './sections/AiView';
 import { BottomTask, AddTask } from './components/BottomTask';
-import { NavItem } from './components/NavItem';
+import { NavItem } from './sections/NavItem';
+import { BottomView } from './sections/BottomView';
 
-export const APPContext  = createContext();
-
+export const UserContext  = createContext();
+export const AppContext = createContext()
 
 function App() {
-  const [ user, setUser ] = useState('');
+  const [ user, setUser ] = useState(null);
   const [ profile, setProfile ] = useState('');
   const [day, setDay] = useState('');
   const [activeTask, setActiveTask] = useState('')
+  const [taskObject, setTaskObject] = useState([])
 
 
   
@@ -60,7 +62,8 @@ function App() {
   return (
     <div className='z-20 text-white'>
     
-    <APPContext.Provider value={{setUser,setProfile,user,profile,setDay}}>
+    <AppContext.Provider value={{taskObject,setTaskObject}}>
+    <UserContext.Provider value={{setUser,setProfile,user,profile,setDay}}>
     {location.pathname === '/login' ? <Login /> :
     <>
 
@@ -70,22 +73,16 @@ function App() {
       '>
 
       <section className='w-[21%] p-4'>
-      <ul className=' flex gap-3 flex-row w-fit items-center justify-center 
-      bg-gradient-to-r from-black bg-orange-900 bg-opacity-55  
-      absolute bottom-4 right-0 left-0 p-2 border rounded-xl 
-      mx-auto my-0 opacity-90 
-       lg:flex-col lg:relative '>
 
-      
+
       <NavItem day={day}/>
-        
-      </ul>
+
       </section>
-      
+
       <section className='text-white lg:w-1/2 font-mono lg:text-4xl'>
 
       <Routes >
-        <Route path='/' element={<Homepage />} />
+        <Route path='/' element={<Homepage taskObject={taskObject} />} />
         <Route path='/today' element={<Today />} />
         <Route path='/login' element={<Login />} />
         <Route path='/finished' element={<Finished/>} />
@@ -105,9 +102,7 @@ function App() {
 
       <div>
 
-      <AddTask/>
-
-      <BottomTask />
+      <BottomView />
 
       </div>
     </>}
@@ -115,8 +110,8 @@ function App() {
 
     <CurrentDate />
 
-    </APPContext.Provider>
-
+    </UserContext.Provider>
+    </AppContext.Provider>
     </div>
   )
 }

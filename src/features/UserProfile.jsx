@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { APPContext } from "../App"
+import { UserContext } from "../App"
 import { googleLogout } from "@react-oauth/google"
 
 
@@ -7,7 +7,7 @@ import { googleLogout } from "@react-oauth/google"
 
 export function UserProfile(){
 
-  const {profile, setProfile} = useContext(APPContext)
+  const {profile, setProfile} = useContext(UserContext)
   const [profileView, setProfileView] = useState(false)
   
   const logOut = () => {

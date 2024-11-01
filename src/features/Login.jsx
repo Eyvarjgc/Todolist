@@ -1,14 +1,14 @@
 
 import { useGoogleLogin  , googleLogout } from '@react-oauth/google';
 import { useState,useContext, useEffect} from 'react'
-import {APPContext} from '../App';
+import {UserContext} from '../App';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
 
 export function Login(){
-  const {user, profile, setUser, setProfile} = useContext(APPContext)
+  const {user, profile, setUser, setProfile} = useContext(UserContext)
   const navigate = useNavigate()
   
 

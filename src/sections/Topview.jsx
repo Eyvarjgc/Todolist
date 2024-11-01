@@ -6,7 +6,7 @@ export function Topview(){
 
   return(
   <>
-    <nav className="w-full py-4 flex justify-evenly items-center ">
+    <nav className="w-full py-4 flex justify-evenly items-center orbitron ">
 
       <img src="/img/todoLogo.webp" 
       alt="temporal logo" 
