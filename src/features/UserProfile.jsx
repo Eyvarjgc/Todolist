@@ -45,7 +45,7 @@ export function UserProfile(){
 
             <button className="flex justify-start items-center gap-3
              w-full p-2 font-light rounded-md hover:bg-gray-800 ">
-            <img src="/src/assets/icons/themeIcon.png" alt="" className="w-[20px]" />
+            <img src="/img/icons/themeIcon.png" alt="" className="w-[20px]" />
             <span>Theme</span>
             </button>
 
@@ -57,7 +57,7 @@ export function UserProfile(){
 
             <button onClick={logOut} className="flex justify-start items-center 
             w-full  gap-3 font-light p-2 rounded-md hover:bg-gray-800">
-              <img src="/src/assets/icons/logoutIcon.png" alt="" className="w-[20px]" />
+              <img src="/img/icons/logoutIcon.png" alt="" className="w-[20px]" />
               <span>Log out</span>
             </button> 
 
