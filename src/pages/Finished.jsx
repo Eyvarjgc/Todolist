@@ -2,9 +2,9 @@
 export function Finished(){
 
   return(
-    <>
-    
-    <h1>Finished task</h1>
-    </>
+    <div className="">
+      <h1>Dashboard - finished</h1>
+
+    </div>
   )
 }
