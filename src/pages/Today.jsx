@@ -13,9 +13,8 @@ export function Today(){
 
 
    return(
-    <>
-    
-    <h1>Dashboard - Today task</h1>
+    <div className='orbitron  absolute  w-full left-0  lg:relative '>
+    <h1 className='text-xl text-center lg:text-start'>Dashboard - Today task</h1>
     <div className='orbitron text-sm mt-4'>
 
     {listItem}
@@ -26,6 +25,6 @@ export function Today(){
 
     
 
-    </>
+    </div>
   )
 }

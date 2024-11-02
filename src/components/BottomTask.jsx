@@ -1,7 +1,15 @@
-import { TaskContext } from "../sections/BottomView";
+// import { TaskContext } from "../sections/BottomView";
+// import { AppContext } from "../App"
 import { useContext, useState } from "react";
-import { AppContext } from "../App"
 import { CancelTask } from "./CancelTask";
+
+
+import { TaskContext } from "../sections/TaskView";
+import { AppContext } from "../App";
+
+
+
+// const {setAddingTask} = useContext(TaskContext)
 
 
 export function BottomTask({handleTask}){
@@ -34,8 +42,8 @@ export function AddTask({}){
   const [changeDescriptionTask, setDescriptionTask] = useState('')
   const [warning, setWarning] = useState('')
 
-  const {setAddingTask} = useContext(TaskContext)
   const {taskObject, setTaskObject} = useContext(AppContext)
+  const {setAddingTask} = useContext(TaskContext)
 
   const objectToSave = {
     name: changeNameTask,
@@ -44,7 +52,7 @@ export function AddTask({}){
 
   const handleCancelTask = (empty) => {
 
-    {empty ? setWarning(true) : setAddingTask(false)}
+    {empty ? setWarning(true) : (false)}
   }
 
   
@@ -54,7 +62,7 @@ export function AddTask({}){
       {/*Warning = True, then i`ll show the warning */}
       {warning && <CancelTask  setWarning={setWarning}/>}
 
-      <div className=" flex py-4  justify-evenly items-center absolute w-full bottom-10 orbitron">
+      <div className=" flex py-4  justify-evenly items-center absolute w-full bottom-10 orbitron z-50">
         
       <div className="flex  flex-col 
       bg-gradient-to-b from-black bg-gray-700 border 
@@ -65,11 +73,11 @@ export function AddTask({}){
 
           <input onChange={(event) => {setChangeNameTask(event.target.value);
           }} type="text" placeholder="Task name"
-          className="text-xl bg-transparent px-2 focus:outline-none w-full"/>
+          className="text-xl bg-transparent px-2 focus:outline-none w-full text-white"/>
 
           <input onChange={(event) => {setDescriptionTask(event.target.value);
           }} type="text" placeholder="Description"
-          className="text-sm bg-transparent px-2 focus:outline-none w-full "/>
+          className="text-sm bg-transparent px-2 focus:outline-none w-full text-white "/>
 
         </div>
 

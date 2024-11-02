@@ -28,7 +28,7 @@ export function UserProfile(){
        lg:translate-x-20 relative ">
         
         <img
-        src={profile.picture} alt="" 
+        src={profile.picture} alt="pfp" 
         className="w-[30px] sm:w-[40px] rounded-3xl  group-hover:opacity-50"/>
 
         <p className="font-medium userName hidden md:block 
@@ -39,8 +39,8 @@ export function UserProfile(){
         alt="" className="w-[20px]"/></span>
 
 
-        <ul className=" bg-gray-700 bg-opacity-45 userOptions
-        rounded-3xl text-white  z-50 shadow-md hidden px-2">
+        <ul className=" bg-gray-700 bg-opacity-80 lg:bg-opacity-45 userOptions
+        rounded-3xl text-white  z-50 shadow-md hidden px-2 mt-2 lg:mt-0">
           <li className="p-2 ">
 
             <button className="flex justify-start items-center gap-3

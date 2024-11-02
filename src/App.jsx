@@ -15,7 +15,7 @@ import { CurrentDate } from './utils/Date';
 import { AiView } from './sections/AiView';
 import { BottomTask, AddTask } from './components/BottomTask';
 import { NavItem } from './sections/NavItem';
-import { BottomView } from './sections/BottomView';
+import { BottomView } from './sections/TaskView';
 
 export const UserContext  = createContext();
 export const AppContext = createContext()
@@ -79,7 +79,7 @@ function App() {
 
       </section>
 
-      <section className='text-white lg:w-1/2 font-mono lg:text-4xl'>
+      <section className='text-white w-full lg:w-1/2  font-mono lg:text-4xl '>
 
       <Routes >
         <Route path='/' element={<Homepage taskObject={taskObject} />} />

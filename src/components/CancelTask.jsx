@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { TaskContext } from "../sections/BottomView"
+import { TaskContext } from "../sections/TaskView"
 
 export function CancelTask({setWarning}){
 
