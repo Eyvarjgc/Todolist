@@ -1,15 +1,12 @@
-// import { TaskContext } from "../sections/BottomView";
-// import { AppContext } from "../App"
+
 import { useContext, useState } from "react";
 import { CancelTask } from "./CancelTask";
 
 
-import { TaskContext } from "../sections/TaskView";
 import { AppContext } from "../App";
+import { TaskContext } from "../sections/TaskView";
 
 
-
-// const {setAddingTask} = useContext(TaskContext)
 
 
 export function BottomTask({handleTask}){
@@ -37,47 +34,55 @@ export function BottomTask({handleTask}){
   )
 }
 
-export function AddTask({}){
+export function AddTask({hideButton}){
   const [changeNameTask, setChangeNameTask] = useState('')
   const [changeDescriptionTask, setDescriptionTask] = useState('')
   const [warning, setWarning] = useState('')
 
-  const {taskObject, setTaskObject} = useContext(AppContext)
-  const {setAddingTask} = useContext(TaskContext)
+  const {taskObject, setTaskObject, setAddingTask} = useContext(AppContext)
+
+
+  
+
 
   const objectToSave = {
     name: changeNameTask,
      description: changeDescriptionTask
   }
 
-  const handleCancelTask = (empty) => {
+  const handleCancelTask = (notEmpty) => {
 
-    {empty ? setWarning(true) : (false)}
+      {notEmpty ? setWarning(true) : setAddingTask(false)}
   }
+
+  const handleCancelTaskButton2 = (notEmpty) => {
+
+    {notEmpty ? setWarning(true) : hideButton(false)}
+}
 
   
   return(
     <>
 
       {/*Warning = True, then i`ll show the warning */}
-      {warning && <CancelTask  setWarning={setWarning}/>}
+      {warning && <CancelTask  setWarning={setWarning} hideButton={hideButton} />}
 
-      <div className=" flex py-4  justify-evenly items-center absolute w-full bottom-10 orbitron z-50">
+      <div className=" flex py-4  justify-evenly items-center absolute w-full bottom-10 orbitron z-20">
         
       <div className="flex  flex-col 
       bg-gradient-to-b from-black bg-gray-700 border 
       bg-opacity-50 w-3/4 lg:w-2/4  mx-auto my-0  text-xl rounded-xl
-        border-white lg:-translate-x-14 px-4 py-1" >
+        border-white lg:-translate-x-14 px-4 py-1 z-30" >
 
         <div className="mt-2">
 
           <input onChange={(event) => {setChangeNameTask(event.target.value);
           }} type="text" placeholder="Task name"
-          className="text-xl bg-transparent px-2 focus:outline-none w-full text-white"/>
+          className="text-xl bg-transparent px-2 focus:outline-none w-full text-white font-bold"/>
 
           <input onChange={(event) => {setDescriptionTask(event.target.value);
           }} type="text" placeholder="Description"
-          className="text-sm bg-transparent px-2 focus:outline-none w-full text-white "/>
+          className="text-sm bg-transparent px-2 focus:outline-none w-full text-white font-light"/>
 
         </div>
 
@@ -86,10 +91,10 @@ export function AddTask({}){
 
         <span className="flex gap-4 text-sm mt-2">
         
-          <button  className="px-2 lg:px-4 border 
+          <button  className="px-2 lg:px-4 border text-white
           rounded-lg ">Date</button>
 
-          <button  className="px-2 lg:px-4 border 
+          <button  className="px-2 lg:px-4 border text-white
           rounded-lg ">Mood</button>
 
         </span>
@@ -98,13 +103,13 @@ export function AddTask({}){
 
         <div className="flex gap-4 text-sm mt-2  " >
 
-        <button onClick={() => {handleCancelTask(changeNameTask)}} className="px-2 lg:px-4
+        <button onClick={() => {handleCancelTask(changeNameTask) || handleCancelTaskButton2(changeNameTask)}} className="px-2 lg:px-4
           rounded-lg bg-white text-black">Cancel</button>
           
           
         <button onClick={() => {setTaskObject([...taskObject,objectToSave]);
         }} className="px-2 lg:px-4 
-          rounded-lg bg-orange-800 bg-opacity-50">Save</button>
+          rounded-lg bg-orange-800 bg-opacity-50 text-white">Save</button>
 
         </div>
 

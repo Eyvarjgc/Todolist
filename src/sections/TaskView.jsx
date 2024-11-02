@@ -1,25 +1,27 @@
 import { useState,  useContext, createContext } from "react"
-import { BottomTask, AddTask } from "../components"
+import { BottomTask, AddTask, NavButton } from "../components"
 import  { AppContext } from "../App"
-
+import { CancelTask } from "../components/CancelTask"
 
 export const TaskContext = createContext()
 
-export function BottomView(){
-  const [addingTask, setAddingTask] = useState(null)
-  
-  const {setTaskObject} = useContext(AppContext)
+export function TaskView(){
+  const {setTaskObject, setAddingTask, addingTask} = useContext(AppContext)
 
  
   function handleTask(){
-    setAddingTask(true)
+    // setAddingTask(true)
+    setAddingTask(!addingTask)
+
   }
 
 
 
   const states = {
-    setAddingTask,
     setTaskObject,
+    handleTask,
+    setAddingTask,
+    addingTask
   }
 
   
@@ -28,7 +30,9 @@ export function BottomView(){
     <TaskContext.Provider value={states} >
       <div className="">
         {addingTask ? 
-        <AddTask  displayTask={setAddingTask}/> : 
+        <AddTask  /> : 
+       
+
         
         < BottomTask  handleTask={handleTask}/>
         

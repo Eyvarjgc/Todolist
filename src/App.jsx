@@ -15,7 +15,9 @@ import { CurrentDate } from './utils/Date';
 import { AiView } from './sections/AiView';
 import { BottomTask, AddTask } from './components/BottomTask';
 import { NavItem } from './sections/NavItem';
-import { BottomView } from './sections/TaskView';
+import { TaskView } from './sections/TaskView';
+
+
 
 export const UserContext  = createContext();
 export const AppContext = createContext()
@@ -26,6 +28,7 @@ function App() {
   const [day, setDay] = useState('');
   const [activeTask, setActiveTask] = useState('')
   const [taskObject, setTaskObject] = useState([])
+  const [addingTask, setAddingTask] = useState(false)
 
 
   
@@ -62,9 +65,11 @@ function App() {
   return (
     <div className='z-20 text-white'>
     
-    <AppContext.Provider value={{taskObject,setTaskObject}}>
+    <AppContext.Provider value={{taskObject,setTaskObject,setAddingTask, addingTask}}>
     <UserContext.Provider value={{setUser,setProfile,user,profile,setDay}}>
+    
     {location.pathname === '/login' ? <Login /> :
+    
     <>
 
       <Topview />
@@ -74,13 +79,13 @@ function App() {
 
       <section className='w-[21%] p-4'>
 
-
+        
       <NavItem day={day}/>
+
 
       </section>
 
       <section className='text-white w-full lg:w-1/2  font-mono lg:text-4xl '>
-
       <Routes >
         <Route path='/' element={<Homepage taskObject={taskObject} />} />
         <Route path='/today' element={<Today />} />
@@ -90,7 +95,6 @@ function App() {
       </Routes>
 
       </section>
-
       <section className='hidden text-white lg:flex bg-gradient-to-b 
       from-orange-950 bg-black bg-opacity-30 w-1/4 ml-5 rounded-3xl 
       p-4 border '>
@@ -102,14 +106,13 @@ function App() {
 
       <div>
 
-      <BottomView />
+      <TaskView />
 
       </div>
     </>}
 
 
     <CurrentDate />
-
     </UserContext.Provider>
     </AppContext.Provider>
     </div>
