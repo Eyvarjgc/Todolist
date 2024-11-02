@@ -63,7 +63,8 @@ function App() {
   
 
   return (
-    <div className='z-20 text-white'>
+    // z-20 for what ?
+    <div className=' text-white  '>
     
     <AppContext.Provider value={{taskObject,setTaskObject,setAddingTask, addingTask}}>
     <UserContext.Provider value={{setUser,setProfile,user,profile,setDay}}>
@@ -85,7 +86,7 @@ function App() {
 
       </section>
 
-      <section className='text-white w-full lg:w-1/2  font-mono lg:text-4xl '>
+      <section className='text-white w-full lg:w-1/2  font-mono lg:text-4xl  '>
       <Routes >
         <Route path='/' element={<Homepage taskObject={taskObject} />} />
         <Route path='/today' element={<Today />} />

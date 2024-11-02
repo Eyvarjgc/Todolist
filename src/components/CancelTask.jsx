@@ -9,10 +9,12 @@ export function CancelTask({setWarning, hideButton }){
   return(
     <div className="">
     
-    
+    {/* Cancel Task Warning background */}
     <span className="block  bg-black fixed z-40 left-0 right-0 bottom-0 top-0 m-auto w-full h-full bg-opacity-70"></span>
 
-    <div className="absolute left-0 right-0 top-[50%] lg:top-20  w-fit lg:w-1/4 h-fit  z-50 bg-gray-950 border-orange-800 border    m-auto p-4  rounded-3xl text-white ">
+    {/* Cancel Task Warning */}
+
+    <div className="absolute left-0 right-0 top-[50%] lg:top-20 z-50  w-fit lg:w-1/4 h-fit  bg-gray-950 border-orange-800 border    m-auto p-4  rounded-3xl text-white ">
 
       <div>
     <h1 className="font-bold">Discard unsaved changes? </h1>

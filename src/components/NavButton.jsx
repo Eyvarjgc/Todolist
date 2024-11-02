@@ -14,8 +14,8 @@ export function NavButton({img, buttonValidation, to}){
 
   return(
     <>
-    {addNewTaskButton  &&    <div className="fixed w-full h-full right-32 top-0  left-0 m-auto  bg-black bg-opacity-20 z-50 inset-0">
-        <div className="fixed w-full h-1/2   m-auto left-0 lg:right-32 top-0">
+    {addNewTaskButton  &&    <div className=" fixed w-full h-full right-32 top-0  left-0 m-auto    inset-0 lg:bg-black ">
+        <div className="fixed w-full h-1/2   m-auto left-0 lg:right-32 lg:top-0  bottom-20 lg:bottom-[50%]">
         <AddTask  hideButton={setAddNewTaskButton}/> : 
         
         </div>

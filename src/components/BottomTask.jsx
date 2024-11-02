@@ -67,12 +67,12 @@ export function AddTask({hideButton}){
       {/*Warning = True, then i`ll show the warning */}
       {warning && <CancelTask  setWarning={setWarning} hideButton={hideButton} />}
 
-      <div className=" flex py-4  justify-evenly items-center absolute w-full bottom-10 orbitron z-20">
+      <div className=" flex py-4  justify-evenly items-center absolute w-full bottom-10 orbitron  ">
         
       <div className="flex  flex-col 
       bg-gradient-to-b from-black bg-gray-700 border 
-      bg-opacity-50 w-3/4 lg:w-2/4  mx-auto my-0  text-xl rounded-xl
-        border-white lg:-translate-x-14 px-4 py-1 z-30" >
+      bg-opacity-10 0 w-3/4 lg:w-2/4  mx-auto my-0  text-xl rounded-xl
+        border-white lg:-translate-x-14 px-4 py-1 " >
 
         <div className="mt-2">
 
@@ -107,7 +107,7 @@ export function AddTask({hideButton}){
           rounded-lg bg-white text-black">Cancel</button>
           
           
-        <button onClick={() => {setTaskObject([...taskObject,objectToSave]);
+        <button onClick={() => {setTaskObject([...taskObject,objectToSave]); setAddingTask(false) || hideButton(false);
         }} className="px-2 lg:px-4 
           rounded-lg bg-orange-800 bg-opacity-50 text-white">Save</button>
 
