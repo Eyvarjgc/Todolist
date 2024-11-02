@@ -13,9 +13,9 @@ export function Homepage({taskObject}){
 
 
   const listItem = taskObject.map((item,index) => 
-    <div key={index}>
-      <p>{item.name}</p>
-      <p>{item.description}</p>
+    <div key={index} className='bg-black border-orange-800 border p-2 rounded-2xl'>
+      <p className='font-bold'>{item.name}</p>
+      <p className='font-light'>{item.description}</p>
     </div>
   )
 
@@ -24,7 +24,7 @@ export function Homepage({taskObject}){
   return(
     <div className='orbitron  absolute  w-full left-0  lg:relative '>
     <h1 className='text-xl text-center lg:text-start'>Dashboard</h1>
-    <div className='orbitron text-sm mt-4 z-40'>
+    <div className='orbitron text-sm mt-4 z-40 flex gap-8 flex-wrap'>
     {listItem}
 
     
