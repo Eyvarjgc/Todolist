@@ -45,3 +45,19 @@ body{
   position: absolute;
   top: 0;
 } */
+
+
+/* .taskQuickInfo{
+  background:
+		linear-gradient(135deg, transparent 20px,transparent 30px, transparent 30px,hsla(0, 0%, 100%, .15) 0) top left,
+		linear-gradient(225deg, transparent 10px 0, hsla(0, 0%, 100%, .15) 0) top right,
+		linear-gradient(315deg, transparent 30px, transparent 40px  0, hsla(0, 0%, 100%, .15) 0) bottom right,
+		linear-gradient(45deg,  transparent 10px 0, hsla(0, 0%, 100%, .15) 0) bottom left;
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+  border-radius: 5px;
+} */
+.taskQuickInfo{
+  clip-path: polygon(0% 0%, 95% 0%, 100% 10%, 100% 100%, 0% 100%);
+
+}
