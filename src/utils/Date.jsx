@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../App';
+import { useAppContext } from '../Hooks/useAppContext';
 
 export function CurrentDate() {
 
   const [fecha, setFecha] = useState('');
 
-  const {setDay} = useContext(UserContext)
+  const {setDay} = useAppContext()
   
   
   useEffect(() => {

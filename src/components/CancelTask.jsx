@@ -1,9 +1,7 @@
-import { useContext } from "react"
-import { TaskContext } from "../sections/TaskView"
-import { AppContext } from "../App"
+import { useAppContext } from '../Hooks/useAppContext';
 
 export function CancelTask({setWarning, hideButton }){
-  const {addingTask,setAddingTask} = useContext(AppContext)
+  const {addingTask,setAddingTask} = useAppContext()
 
 
   return(

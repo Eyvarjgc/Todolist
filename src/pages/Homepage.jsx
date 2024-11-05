@@ -2,12 +2,14 @@ import { useState, useEffect, } from 'react';
 import axios from 'axios';
 import { AddTask } from '../components';
 import { TaskQuickInfo } from '../components/TaskQuickInfo';
+import { useAppContext } from '../Hooks/useAppContext';
 
-export function Homepage({taskObject}){
+export function Homepage(){
   const [data, setData] = useState([])
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(null)
 
+  const {taskObject} = useAppContext()
 
   
 

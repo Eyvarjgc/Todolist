@@ -1,33 +1,24 @@
-import { useState,  useContext, createContext } from "react"
-import { BottomTask, AddTask, NavButton } from "../components"
-import  { AppContext } from "../App"
-import { CancelTask } from "../components/CancelTask"
+import { createContext } from "react"
+import { BottomTask, AddTask } from "../components"
+import { useAppContext } from '../Hooks/useAppContext';
+
 
 export const TaskContext = createContext()
 
 export function TaskView(){
-  const {setTaskObject, setAddingTask, addingTask} = useContext(AppContext)
+  const {setTaskObject, setAddingTask, addingTask} = useAppContext()
 
  
   function handleTask(){
-    // setAddingTask(true)
     setAddingTask(!addingTask)
 
   }
 
 
 
-  const states = {
-    setTaskObject,
-    handleTask,
-    setAddingTask,
-    addingTask
-  }
-
   
 
   return(
-    <TaskContext.Provider value={states} >
       <div className="">
         {addingTask ? 
         <AddTask  /> : 
@@ -39,6 +30,5 @@ export function TaskView(){
         }
       </div>
 
-    </TaskContext.Provider>
   )
 }

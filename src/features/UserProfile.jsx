@@ -1,21 +1,49 @@
-import { useContext, useState } from "react"
-import { UserContext } from "../App"
-import { googleLogout } from "@react-oauth/google"
+import {  useState, useEffect } from "react"
+import { googleLogout, useGoogleLogin } from "@react-oauth/google"
+import {useNavigate } from 'react-router-dom'
 
+
+import { useAppContext } from "../Hooks/useAppContext"
 
 
 
 export function UserProfile(){
 
-  const {profile, setProfile} = useContext(UserContext)
+  const {profile, setProfile} = useAppContext()
   const [profileView, setProfileView] = useState(false)
   
+  const navigate = useNavigate()
+
+
   const logOut = () => {
     googleLogout();
     localStorage.removeItem('user')
     setProfile(null);
     navigate('/login')
   };
+
+
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => setUser(codeResponse),
+    onError: (error) => console.log('Login Failed:', error)
+  });
+  
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user')
+    if(storedUser){
+      const userData = JSON.parse(storedUser)
+      setProfile(userData)
+
+
+    }
+    else{
+      navigate('/login')
+
+    }
+  }, [])
+  
+
 
   return(
     <div className="">
@@ -71,3 +99,4 @@ export function UserProfile(){
     </div>
   )
 }
+
