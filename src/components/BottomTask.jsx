@@ -5,15 +5,15 @@ import { CancelTask } from "./CancelTask";
 import { useAppContext } from '../Hooks/useAppContext';
 
 
-export function BottomTask({handleTask}){
-
+export function BottomTask({}){
+  const { setAddingTask, addingTask} = useAppContext()
   return(
     <div className="hidden lg:flex py-4
     justify-evenly items-center absolute
-    w-full bottom-8 orbitron">
+    w-full bottom-8 orbitron ">
 
 
-      <button onClick={handleTask} 
+      <button onClick={() => {setAddingTask(!addingTask)}} 
         className="flex justify-start items-center 
         bg-gradient-to-b from-black bg-gray-700 border 
         bg-opacity-50 w-2/4 mx-auto my-0 inset-y-0 text-xl
@@ -32,6 +32,9 @@ export function BottomTask({handleTask}){
   )
 }
 
+
+
+
 export function AddTask({hideButton}){
   const [changeNameTask, setChangeNameTask] = useState('')
   const [changeDescriptionTask, setDescriptionTask] = useState('')
@@ -39,8 +42,10 @@ export function AddTask({hideButton}){
 
   const {taskObject, setTaskObject, setAddingTask} = useAppContext()
 
+  
 
   const objectToSave = {
+    ID: taskObject.length === 0  ? 1 : taskObject[taskObject.length - 1].ID + 1,
     name: changeNameTask,
     description: changeDescriptionTask,
 

@@ -35,7 +35,7 @@ export const TaskProvider = ({children}) => {
     activeTask, setActiveTask,
     taskObject, setTaskObject,
     addingTask, setAddingTask,
-
+    
   }
   return(
 

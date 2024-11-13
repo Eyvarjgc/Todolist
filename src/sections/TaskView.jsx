@@ -9,10 +9,7 @@ export function TaskView(){
   const {setTaskObject, setAddingTask, addingTask} = useAppContext()
 
  
-  function handleTask(){
-    setAddingTask(!addingTask)
 
-  }
 
 
 
@@ -25,7 +22,7 @@ export function TaskView(){
        
 
         
-        < BottomTask  handleTask={handleTask}/>
+        < BottomTask  />
         
         }
       </div>

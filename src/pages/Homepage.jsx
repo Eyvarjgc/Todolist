@@ -1,6 +1,7 @@
-import { useState, useEffect, } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import { AddTask } from '../components';
+
+
 import { TaskQuickInfo } from '../components/TaskQuickInfo';
 import { useAppContext } from '../Hooks/useAppContext';
 
@@ -14,8 +15,8 @@ export function Homepage(){
   
 
 
-  const listItem =taskObject.map((item,index) => 
-    <TaskQuickInfo desc={item.description} key={index} task={item.name} />
+  const listItem =taskObject.map((item) => 
+    <TaskQuickInfo desc={item.description} key={item.ID} task={item.name} taskID={item.ID}/>
   )
   
 
@@ -24,8 +25,12 @@ export function Homepage(){
      lg:p-0 '>
     <h1 className='text-xl text-center lg:text-start '>Dashboard</h1>
     <div className='orbitron text-sm mt-4 z-40 flex gap-4 flex-wrap px-12 lg:px-0 '>
-    {listItem}
-    
+    {/* {listItem} */}
+
+
+{taskObject.map((item) => 
+    <TaskQuickInfo desc={item.description} key={item.ID} task={item.name} taskID={item.ID}/>
+  )}    
     
 
     </div>
