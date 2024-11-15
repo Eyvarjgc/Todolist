@@ -13,7 +13,7 @@ import { Finished } from './pages/Finished';
 import { CurrentDate } from './utils/Date';
 import { AiView } from './sections/AiView';
 import { NavItem } from './sections/NavItem';
-import { TaskView } from './sections/TaskView';
+import { BottomView } from './sections/BottomView';
 
 
 import { UserProvider } from './Hooks/useContexts';
@@ -90,7 +90,7 @@ function App() {
 
       </section>
 
-      <div><TaskView /></div>
+      <div><BottomView /></div>
 
     </> }
 

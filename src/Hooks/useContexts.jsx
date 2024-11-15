@@ -30,12 +30,14 @@ export const TaskProvider = ({children}) => {
   const [activeTask, setActiveTask] = useState('')
   const [taskObject, setTaskObject] = useState([])
   const [addingTask, setAddingTask] = useState(false)
+  const [addTaskMobile, setAddTaskMobile] = useState(false)
+
 
   const Provider_Values  = {
     activeTask, setActiveTask,
     taskObject, setTaskObject,
     addingTask, setAddingTask,
-    
+    addTaskMobile, setAddTaskMobile
   }
   return(
 

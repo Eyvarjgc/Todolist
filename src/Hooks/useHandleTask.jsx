@@ -7,13 +7,24 @@ import { useState, useEffect } from "react"
 export function useHandleTask(){
   const {taskObject, setTaskObject} = useAppContext()
 
-  function editTask(event){
-    // const taskByID = taskObject.map(Element => (Element.ID === taskID ? ))
+  
 
+  function EditTask(taskId, objectToSave){
 
+    setTaskObject((prevTask) => {
+    const index = prevTask.findIndex((item) => item.ID === taskId)
 
-    console.log(event);
+    if (index !== -1) {
+      return prevTask.map((task, i) => i=== index ? { ...task, ...objectToSave} : task)
+    } else{
+      return [...prevTask, objectToSave]
+    }
+    
+      
+      
+    })
 
+  
   }
 
   function deleteTask(taskID){
@@ -22,5 +33,5 @@ export function useHandleTask(){
 
   }
 
-  return {deleteTask,editTask}
+  return {deleteTask,EditTask}
 }
