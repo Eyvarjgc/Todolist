@@ -2,15 +2,17 @@ import { useAppContext } from '../Hooks/useAppContext';
 import { CancelTask } from "./CancelTask";
 import { useContext, useState } from "react";
 
-import { EditTask } from './EditTask';
+import { useHandleTask } from '../Hooks/useHandleTask';
 
-export function AddTask({hideButton}){
+
+export function AddTask({OnSaveTask, onSubmit}){
   const [changeNameTask, setChangeNameTask] = useState('')
   const [changeDescriptionTask, setDescriptionTask] = useState('')
   const [warning, setWarning] = useState('')
+  const {HandleCancelTask} = useHandleTask()
+  const {taskObject, setAddingTask, setAddTaskMobile} = useAppContext()
 
-  const {taskObject, setTaskObject, setAddingTask} = useAppContext()
-
+  // Auto Height for input  taskname and taskdescription
   const [taskHeight, setTaskHeight] = useState("auto");
   const [descHeight, setDesHeight] = useState("auto");
 
@@ -22,13 +24,7 @@ export function AddTask({hideButton}){
 
   }
 
-   const handleCancelTask = (notEmpty) => {
-      {notEmpty ? setWarning(true) : setAddingTask(false)}
-  }
-
-  const handleCancelTaskMobile = (notEmpty) => {
-    {notEmpty ? setWarning(true) : hideButton(false)}
-}
+ 
 
   const handleTaskName = (event) => {
     const { value, scrollHeight } = event.target;
@@ -43,10 +39,13 @@ export function AddTask({hideButton}){
     
     setDesHeight(`${scrollHeight}px`);
   };
+
+
 return(
   <>
     {/*Warning = True, then i`ll show the warning */}
-    {warning && <CancelTask  setWarning={setWarning} hideButton={hideButton} />}
+    {warning && <CancelTask  setWarning={setWarning} />}
+    
     <div className=" flex py-4  justify-evenly items-center w-full  orbitron  ">
 
     <div className="flex  flex-col 
@@ -86,16 +85,16 @@ return(
         <div className="flex gap-1 md:gap-2 lg:gap-4 text-sm mt-2  " >
 
           <button onClick={() => {
-            handleCancelTask(changeNameTask) || 
-            handleCancelTaskMobile(changeNameTask)}} 
+            HandleCancelTask(changeNameTask, setWarning)}} 
 
             className="px-2 lg:px-4 rounded-lg bg-white
           text-black">Cancel</button>
 
           <button onClick={() => {
-            setTaskObject([...taskObject,objectToSave]);
-            setAddingTask(false) || hideButton(false);
-            
+
+            OnSaveTask()
+            onSubmit(objectToSave)
+            setAddingTask(false) || setAddTaskMobile(false);
           }} 
           className="px-2 lg:px-4 rounded-lg bg-orange-800
           bg-opacity-50 text-white ">Save</button>

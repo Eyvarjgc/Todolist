@@ -1,7 +1,7 @@
 import { useAppContext } from '../Hooks/useAppContext';
 
-export function CancelTask({setWarning, hideButton }){
-  const {addingTask,setAddingTask} = useAppContext()
+export function CancelTask({setWarning, editTask }){
+  const {addingTask,setAddingTask, setAddTaskMobile,setIsEditing} = useAppContext()
 
 
   return(
@@ -23,7 +23,7 @@ export function CancelTask({setWarning, hideButton }){
       <div className="flex gap-4 justify-end mt-4">
         <button onClick={() => {setWarning(false)}} className="px-2 lg:px-4 lg:py-1 
           rounded-md bg-white text-black w-fit">Cancel</button>
-        <button onClick={() => {setAddingTask(false) || hideButton(false)}} className="px-2 lg:px-4 lg:py-1 
+        <button onClick={() => {setAddingTask(false) || setAddTaskMobile(false); setIsEditing(false); editTask(false); }} className="px-2 lg:px-4 lg:py-1 
           rounded-md bg-orange-800 bg-opacity-50">Discard</button>
 
       </div>

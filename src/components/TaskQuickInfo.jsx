@@ -1,18 +1,21 @@
 import { useState } from "react"
 import { useHandleTask } from "../Hooks/useHandleTask";
 
-import { EditTask } from "../components/EditTask";
-
-
+import { EditTaskForm } from "../components/EditTask";
+import { FormTask } from "./TaskManage";
+import { useAppContext } from "../Hooks/useAppContext";
 
 export function TaskQuickInfo({task,desc,taskID }){
-  const {deleteTask, editTask} = useHandleTask()
-  const [isEditing, setIsEditing ] = useState(false)
+  const {deleteTask} = useHandleTask()
+  const [editingTask, setEditingTask ] = useState(false)
+  const {setIsEditing, isEditing} = useAppContext() 
 
+  
 
   // Short taskname and description text
-  const taskName = task.length > 20 ? task.slice(0, 20) : task;
-  const description = desc.length >= 30 ? desc.slice(0, 30) : desc;
+
+  // const taskName = task.length > 20 ? task.slice(0, 20) : task;
+  // const description = desc.length >= 30 ? desc.slice(0, 30) : desc;
 
   
   // Input description autoHeigh
@@ -29,11 +32,12 @@ export function TaskQuickInfo({task,desc,taskID }){
   return(
 
   <>
-  {isEditing ?    
+  {editingTask ?    
 
     <div className="w-full ">
 
-      <EditTask taskName={task} taskDescription={desc} taskId={taskID} HandleEditForm={setIsEditing}/>
+      <EditTaskForm taskName={task} taskDescription={desc} taskId={taskID} HandleEditForm={setEditingTask} editTask={setEditingTask}/>
+      {/* <FormTask /> */}
 
     </div>
   
@@ -52,8 +56,8 @@ export function TaskQuickInfo({task,desc,taskID }){
        <span className="flex w-full flex-wrap items-center justify-between">
  
        <span className="w-fit gap-0">
-         <p className="font-semibold text-wrap w-fit break-all capitalize text-[10px]  sm:text-sm transition-all ">{taskName}</p>
-         <p className="font-thin text-opacity-55 text-gray-50 text-[8px] sm:text-xs  transition-all hidden md:block">{description}</p>
+         <p className="font-semibold text-wrap w-fit break-all capitalize text-[10px]  sm:text-sm transition-all ">{task}</p>
+         <p className="font-thin text-opacity-55 text-gray-50 text-[8px] sm:text-xs  transition-all hidden md:block">{desc}</p>
        </span>
  
        <span className=" text-gray-50 text-opacity-55 text-[10px] md:text-xs mr-4  transition-all flex">
@@ -70,13 +74,13 @@ export function TaskQuickInfo({task,desc,taskID }){
            <img src="/img/icons/deleteIcon.svg" alt="" className="" />
          </button>
  
-         <button onClick={() => {setIsEditing(!isEditing)}} 
+         <button onClick={() => {setEditingTask(true)}} 
          className="bg-black bg-opacity-70 border p-1 border-orange-700
           w-6 md:w-7 md:h-7  rounded-md " data-taskid={taskID}>
            <img src="/img/icons/editIcon.svg" alt="" className=""/>
          </button>
        </span>
-      
+       {/* setEditingTask(!editingTask); */}
      </div>}
   </>
  

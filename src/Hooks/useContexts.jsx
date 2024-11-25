@@ -31,13 +31,17 @@ export const TaskProvider = ({children}) => {
   const [taskObject, setTaskObject] = useState([])
   const [addingTask, setAddingTask] = useState(false)
   const [addTaskMobile, setAddTaskMobile] = useState(false)
+  const [ isEditing, setIsEditing] = useState(false)
 
+ 
 
   const Provider_Values  = {
     activeTask, setActiveTask,
     taskObject, setTaskObject,
     addingTask, setAddingTask,
-    addTaskMobile, setAddTaskMobile
+    addTaskMobile, setAddTaskMobile,
+    isEditing, setIsEditing,
+    
   }
   return(
 

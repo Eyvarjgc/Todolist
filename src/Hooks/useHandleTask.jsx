@@ -5,14 +5,28 @@ import { useState, useEffect } from "react"
 
 
 export function useHandleTask(){
-  const {taskObject, setTaskObject} = useAppContext()
+  const {taskObject, setTaskObject,setAddingTask, setAddTaskMobile,setIsEditing} = useAppContext()
 
-  
+  const HandleCancelTask = (notEmpty, setWarning, taskName, editTask) => {
 
-  function EditTask(taskId, objectToSave){
+    if(notEmpty === taskName){      
+      setIsEditing(false)
+      editTask(false)
+    }else{
 
+      {notEmpty ? setWarning(true) : 
+        setAddingTask(false) || setAddTaskMobile(false);   }
+
+    }
+  }
+
+  function EditTask(objectToSave){
+    
+    
+    
     setTaskObject((prevTask) => {
-    const index = prevTask.findIndex((item) => item.ID === taskId)
+      
+    const index = prevTask.findIndex((item) => item.ID === objectToSave.ID)
 
     if (index !== -1) {
       return prevTask.map((task, i) => i=== index ? { ...task, ...objectToSave} : task)
@@ -33,5 +47,5 @@ export function useHandleTask(){
 
   }
 
-  return {deleteTask,EditTask}
+  return {deleteTask,EditTask,HandleCancelTask}
 }

@@ -5,26 +5,17 @@ import { useAppContext } from '../Hooks/useAppContext';
 import { useHandleTask } from "../Hooks/useHandleTask";
 
 
-
-export function EditTask({taskName, taskDescription, taskId, HandleEditForm}){
-  const {EditTask} = useHandleTask()
+export function EditTaskForm({taskName, taskDescription, taskId, HandleEditForm, editTask}){
+  const {EditTask, HandleCancelTask} = useHandleTask()
 
   const [changeNameTask, setChangeNameTask] = useState(taskName)
   const [changeDescriptionTask, setDescriptionTask] = useState(taskDescription)
   const [warning, setWarning] = useState('')
-  // const [addTaskMobile, setAddTaskMobile] = useState(true) 
-  const { setAddingTask, setAddTaskMobile} = useAppContext()
+  const { setAddingTask, setAddTaskMobile,setIsEditing} = useAppContext()
   
 
 
-  const handleCancelTask = (notEmpty) => {
-    {notEmpty ? setWarning(true) : setAddingTask(false)}
-  }
-
-  const handleCancelTaskMobile = (notEmpty) => {
-    {notEmpty ? setWarning(true) : setAddTaskMobile(false)}
-  }
-
+ 
   const objectToSave = {
   ID: taskId,
   name: changeNameTask,
@@ -37,7 +28,9 @@ export function EditTask({taskName, taskDescription, taskId, HandleEditForm}){
     <>
 
 
-    {warning && <CancelTask  setWarning={setWarning}  hideButton={setAddTaskMobile} />}
+    {warning && <CancelTask  setWarning={setWarning}  hideButton={setAddTaskMobile} editTask={editTask} />}
+
+
 
     <div className=" flex py-4  justify-evenly items-center w-full  orbitron  ">
 
@@ -75,19 +68,20 @@ export function EditTask({taskName, taskDescription, taskId, HandleEditForm}){
         <div className="flex gap-1 md:gap-2 lg:gap-4 text-sm mt-2  " >
 
           <button onClick={() => {
-            handleCancelTask(changeNameTask) || 
-            handleCancelTaskMobile(changeNameTask)}} 
+            HandleCancelTask(changeNameTask, setWarning, taskName, editTask)}
+
+          } 
 
             className="px-2 lg:px-4 rounded-lg bg-white
           text-black">Cancel</button>
 
           <button onClick={() => {
-              EditTask(taskId,  objectToSave)
+              setIsEditing(false)
+              EditTask(objectToSave)
               HandleEditForm(false)
-            
 
           }} 
-          className="px-2 lg:px-4 rounded-lg bg-orange-800
+          className="px-2 lg:px-4 rounded-lg bg-orange-800 
           bg-opacity-50 text-white ">Save</button>
 
         </div>

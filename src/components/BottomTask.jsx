@@ -7,6 +7,8 @@ import { useAppContext } from '../Hooks/useAppContext';
 
 export function BottomTask({}){
   const { setAddingTask, addingTask} = useAppContext()
+
+  
   return(
     <div className="hidden lg:flex py-4
     justify-evenly items-center absolute
