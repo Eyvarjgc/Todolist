@@ -12,7 +12,7 @@ export function CancelTask({setWarning, editTask }){
 
     {/* Cancel Task Warning */}
 
-    <div className="absolute left-0 right-0 top-[50%] lg:top-20 z-50  w-fit lg:w-1/4 h-fit  bg-gray-950 border-orange-800 border    m-auto p-4  rounded-3xl text-white ">
+    <div className="absolute left-0 right-0 top-[50%] lg:top-0 z-50  w-fit lg:w-1/4 h-fit  bg-gray-950 border-orange-800 border    m-auto p-4  rounded-3xl text-white ">
 
       <div>
     <h1 className="font-bold">Discard unsaved changes? </h1>

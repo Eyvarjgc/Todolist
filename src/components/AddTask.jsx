@@ -50,7 +50,7 @@ return(
 
     <div className="flex  flex-col 
     bg-gradient-to-b from-black bg-gray-700 border 
-    bg-opacity-10 w-full lg:w-2/4  mx-auto my-0  text-xl rounded-xl
+    bg-opacity-10 w-[80%] lg:w-2/4  mx-auto my-0  text-xl rounded-xl
     border-white lg:-translate-x-14 px-4 py-1  h-fit" >
 
 

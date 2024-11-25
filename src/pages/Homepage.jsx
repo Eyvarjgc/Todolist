@@ -27,11 +27,6 @@ export function Homepage(){
     <div className='orbitron text-sm mt-4 z-40 flex gap-4 flex-wrap px-12 lg:px-0 '>
     {listItem}
 
-{/* 
-  {taskObject.map((item) => 
-    <TaskQuickInfo desc={item.description} key={item.ID} task={item.name} taskID={item.ID}/>
-  )}     */}
-    
 
     </div>
     </div>
