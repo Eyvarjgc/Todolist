@@ -6,7 +6,8 @@ import { useAppContext } from '../Hooks/useAppContext';
 
 export function NavButton({img, buttonValidation, to}){
   const {addingTask, setAddingTask, addTaskMobile, setAddTaskMobile} = useAppContext() 
-  
+
+
 
   return(
     <>

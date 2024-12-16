@@ -1,17 +1,42 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useHandleTask } from "../Hooks/useHandleTask";
 
 import { EditTaskForm } from "../components/EditTask";
 import { FormTask } from "./TaskManage";
 import { useAppContext } from "../Hooks/useAppContext";
 
-export function TaskQuickInfo({task,desc,taskID }){
+export function TaskQuickInfo({task,desc,taskID,date }){
   const {deleteTask} = useHandleTask()
   const [editingTask, setEditingTask ] = useState(false)
   const {setIsEditing, isEditing} = useAppContext() 
+  const  [taskMonth, setTaskMonth] = useState('')
 
   
+  const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
 
+  ]
+
+  useEffect( () => {
+    months.forEach((element, i) => {
+      i == date.$M && setTaskMonth(element);
+    });
+  } ,[])
+ 
+
+  const showDate = `${date.$D} ${taskMonth}`
+  
   // Short taskname and description text
 
   // const taskName = task.length > 20 ? task.slice(0, 20) : task;
@@ -61,7 +86,7 @@ export function TaskQuickInfo({task,desc,taskID }){
        </span>
  
        <span className=" text-gray-50 text-opacity-55 text-[10px] md:text-xs mr-4  transition-all flex">
-         <p>oct 13</p>
+         <p>{showDate}</p>
          <span>|</span>
          <p>Exciting</p>
        </span>

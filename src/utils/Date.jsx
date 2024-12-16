@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useAppContext } from '../Hooks/useAppContext';
 
+
 export function CurrentDate() {
 
   const [fecha, setFecha] = useState('');
 
-  const {setDay} = useAppContext()
+  const {setDay, setDate} = useAppContext()
   
   
   useEffect(() => {
@@ -16,6 +17,7 @@ export function CurrentDate() {
       const año = currentDay.getFullYear();
       
       setDay(day)
+      setDate(`${año}-${mes}-${day}`)
       return `${day }/${mes}/${año}`;
     };
 

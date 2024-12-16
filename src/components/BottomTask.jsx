@@ -6,16 +6,17 @@ import { useAppContext } from '../Hooks/useAppContext';
 
 
 export function BottomTask({}){
-  const { setAddingTask, addingTask} = useAppContext()
+  const { setAddingTask, addingTask, inputRef} = useAppContext()
 
-  
+
+
   return(
     <div className="hidden lg:flex py-4
     justify-evenly items-center absolute
     w-full bottom-8 orbitron z-0">
 
 
-      <button onClick={() => {setAddingTask(!addingTask)}} 
+      <button onClick={() => { setAddingTask(!addingTask)}} 
         className="flex justify-start items-center 
         bg-gradient-to-b from-black bg-gray-700 border 
         bg-opacity-50 w-2/4 mx-auto my-0 inset-y-0 text-xl

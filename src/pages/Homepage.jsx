@@ -16,7 +16,9 @@ export function Homepage(){
   
 
   const listItem =taskObject.map((item) => 
-    <TaskQuickInfo desc={item.description} key={item.ID} task={item.name} taskID={item.ID}/>
+    
+    <TaskQuickInfo desc={item.description} key={item.ID} task={item.name} taskID={item.ID} date={item.date}/>
+
   )
   
 

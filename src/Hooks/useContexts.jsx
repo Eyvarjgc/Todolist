@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-
+import { useRef } from "react";
 
 export const UserContext = createContext()
 
@@ -7,12 +7,15 @@ export const UserProvider = ({children}) => {
   const [ user, setUser ] = useState(null);
   const [ profile, setProfile ] = useState(null);
   const [day, setDay] = useState(null);
+  const [date, setDate] = useState(null);
+
 
   const Provider_Values = {
     user, setUser,
     profile, setProfile,
     day, setDay,
-
+    date, setDate,
+    
   }
   
   
@@ -32,6 +35,7 @@ export const TaskProvider = ({children}) => {
   const [addingTask, setAddingTask] = useState(false)
   const [addTaskMobile, setAddTaskMobile] = useState(false)
   const [ isEditing, setIsEditing] = useState(false)
+  const inputRef = useRef(null)
 
  
 
@@ -41,6 +45,7 @@ export const TaskProvider = ({children}) => {
     addingTask, setAddingTask,
     addTaskMobile, setAddTaskMobile,
     isEditing, setIsEditing,
+    inputRef, 
     
   }
   return(
