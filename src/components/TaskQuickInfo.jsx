@@ -5,7 +5,7 @@ import { EditTaskForm } from "../components/EditTask";
 import { FormTask } from "./TaskManage";
 import { useAppContext } from "../Hooks/useAppContext";
 
-export function TaskQuickInfo({task,desc,taskID,date }){
+export function TaskQuickInfo({task,desc,taskID,date, mood }){
   const {deleteTask} = useHandleTask()
   const [editingTask, setEditingTask ] = useState(false)
   const {setIsEditing, isEditing} = useAppContext() 
@@ -88,7 +88,7 @@ export function TaskQuickInfo({task,desc,taskID,date }){
        <span className=" text-gray-50 text-opacity-55 text-[10px] md:text-xs mr-4  transition-all flex">
          <p>{showDate}</p>
          <span>|</span>
-         <p>Exciting</p>
+         <p>{mood}</p>
        </span>
        </span>
  

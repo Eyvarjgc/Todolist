@@ -35,6 +35,8 @@ export const TaskProvider = ({children}) => {
   const [addingTask, setAddingTask] = useState(false)
   const [addTaskMobile, setAddTaskMobile] = useState(false)
   const [ isEditing, setIsEditing] = useState(false)
+  // const [ mood, setMood] = useState(false)
+
   const inputRef = useRef(null)
 
  

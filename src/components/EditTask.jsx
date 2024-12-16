@@ -20,8 +20,12 @@ export function EditTaskForm({taskName, taskDescription, taskId, HandleEditForm,
   const [changeDescriptionTask, setDescriptionTask] = useState(taskDescription)
   const [warning, setWarning] = useState('')
   const [taskDate, setTaskDate] = useState(dayjs(date))
+  const [mood, setMood] = useState('')
+
   const [popUp, setPopUp] = useState(false)
+  const [moodPopUp, setMoodPopUp] = useState(false)
   
+
   useEffect(() => {
     inputRef.current.focus()
   } ,[])
@@ -31,7 +35,9 @@ export function EditTaskForm({taskName, taskDescription, taskId, HandleEditForm,
   ID: taskId,
   name: changeNameTask,
   description: changeDescriptionTask,
-  date:taskDate
+  date:taskDate,
+  mood: mood,
+
 }
 
   return( 
@@ -79,20 +85,39 @@ export function EditTaskForm({taskName, taskDescription, taskId, HandleEditForm,
 
               <div className='absolute bottom-0  lg:top-10 ring-0 z-50 bg-white rounded-xl'>
               {popUp == true &&
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <div className='bg-white z-50  rounded-xl absolute -bottom-10 text-black left-0'> 
+                <LocalizationProvider dateAdapter={AdapterDayjs} >
                   <DemoContainer components={['DateCalendar']}>
                     <DemoItem >
                       <DateCalendar value={taskDate} onChange={(newValue) => {setTaskDate(newValue); setPopUp(!popUp) } } />
                     </DemoItem>
                 </DemoContainer>
               </LocalizationProvider> 
+              </div>
               }
 
                 </div>
           </div>
 
           <button  className="px-2 lg:px-4 border text-white
-          rounded-lg ">Mood</button>
+          rounded-lg " onClick={() => {setMoodPopUp(!moodPopUp)}}>Mood</button>
+          {moodPopUp && 
+          <div className="absolute  mt-8">
+
+            {/* <Mood setMood={setMood} />; */}
+
+            <ul className="bg-white rounded-xl flex flex-col gap-1 transition-all text-black">
+
+              <button className="hover:bg-orange-800 hover:text-white px-4 py-2 rounded-t-xl transition-all" onClick={() => {setMood('Exciting'); setMoodPopUp(false) ;
+              }} >Exciting</button>
+              <button className="hover:bg-orange-800 hover:text-white px-4 py-2 rounded-b-xl transition-all" onClick={() => {
+                setMood('Challenging'); setMoodPopUp(false)
+              }} >Challenging</button>
+
+            </ul>
+            
+          </div>
+          }
         </span>
 
         {/* BUTTONS SAVE AND CANCEL */}

@@ -3,6 +3,7 @@ import { CancelTask } from "./CancelTask";
 import { useContext, useEffect, useState } from "react";
 
 import { useHandleTask } from '../Hooks/useHandleTask';
+import Mood from '../components/Mood';
 
 // CALENDAR VIEW
 import dayjs from 'dayjs';
@@ -18,10 +19,13 @@ export function AddTask({OnSaveTask, onSubmit}){
   const [changeNameTask, setChangeNameTask] = useState('')
   const [changeDescriptionTask, setDescriptionTask] = useState('')
   const [taskDate, setTaskDate] = useState(dayjs(date))
+  const [mood, setMood] = useState('')
 
 
   const [warning, setWarning] = useState('')
   const [popUp, setPopUp] = useState(false)
+  const [moodPopUp, setMoodPopUp] = useState(false)
+
 
   const {HandleCancelTask} = useHandleTask()
 
@@ -35,6 +39,8 @@ export function AddTask({OnSaveTask, onSubmit}){
     name: changeNameTask,
     description: changeDescriptionTask,
     date: taskDate,
+    mood: mood,
+
   }
 
   const handleTaskName = (event) => {
@@ -57,7 +63,7 @@ export function AddTask({OnSaveTask, onSubmit}){
     inputRef.current.focus()
 
   } ,[])
-
+  
   
   
 return(
@@ -122,7 +128,24 @@ return(
           </div>
 
           <button  className="px-2 lg:px-4 border text-white
-          rounded-lg ">Mood</button>
+          rounded-lg " onClick={() => {setMoodPopUp(!moodPopUp)}}>Mood</button>
+          {moodPopUp && 
+          <div className="absolute lg:left-0 mt-8 lg:mt-1">
+
+            {/* <Mood setMood={setMood} />; */}
+
+            <ul className="bg-white rounded-xl flex flex-col gap-1 transition-all text-black">
+
+              <button className="hover:bg-orange-800 hover:text-white px-4 py-2 rounded-t-xl transition-all" onClick={() => {setMood('Exciting'); setMoodPopUp(false) ;
+              }} >Exciting</button>
+              <button className="hover:bg-orange-800 hover:text-white px-4 py-2 rounded-b-xl transition-all" onClick={() => {
+                setMood('Challenging'); setMoodPopUp(false)
+              }} >Challenging</button>
+
+            </ul>
+            
+          </div>
+          }
         </span>
 
         {/* BUTTONS SAVE AND CANCEL */}
