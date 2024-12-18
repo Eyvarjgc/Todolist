@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useAppContext } from "../Hooks/useAppContext"
 import { useHandleTask } from "../Hooks/useHandleTask"
 // import { EditTask } from "./EditTask"
@@ -10,6 +10,7 @@ export function FormTask({children }){
   const {taskObject, setTaskObject, isEditing, setIsEditing} = useAppContext() 
   const [warning, setWarning] = useState('')
   const [currentTask, setCurrentTask] = useState(null);
+
 
 
   function handleSaveTask(){
@@ -29,6 +30,7 @@ export function FormTask({children }){
       EditTask(task)
     }else{
       setTaskObject([...taskObject, task])
+
     }
     setIsEditing(false)
     setCurrentTask(null)

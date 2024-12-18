@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react"
 import { useHandleTask } from "../Hooks/useHandleTask";
-
+  
 import { EditTaskForm } from "../components/EditTask";
 import { FormTask } from "./TaskManage";
 import { useAppContext } from "../Hooks/useAppContext";
 
-export function TaskQuickInfo({task,desc,taskID,date, mood }){
-  const {deleteTask} = useHandleTask()
+export function TaskQuickInfo({checked,task,desc,taskID,date, mood }){
+  const {deleteTask,EditTask} = useHandleTask()
   const [editingTask, setEditingTask ] = useState(false)
-  const {setIsEditing, isEditing} = useAppContext() 
+  const {setIsEditing, isEditing,taskObject} = useAppContext() 
   const  [taskMonth, setTaskMonth] = useState('')
-
+  const [checkedTask, setCheckedTask] = useState(true)
   
+
   const months = [
   "January",
   "February",
@@ -34,9 +35,59 @@ export function TaskQuickInfo({task,desc,taskID,date, mood }){
     });
   } ,[])
  
-
+  
   const showDate = `${date.$D} ${taskMonth}`
   
+  const existingTasks = JSON.parse(localStorage.getItem('TASKS')) || [];
+
+  const handleDeleteTask = (taskID) => {
+    const updateTask = existingTasks.filter(task => task.ID !== taskID)
+
+    localStorage.setItem('TASKS', JSON.stringify(updateTask))
+    
+    
+  }
+
+  const handleCheckedTask = (taskID) => {
+    // setCheckedTask(prevCheckTask => {
+    //   const newCheckedValue = !prevCheckTask
+
+    //   const objectToSave = {
+    //     ID: taskID,
+    //     checked: newCheckedValue,
+    //     name: task,
+    //     description: desc,
+    //     date:date,
+    //     mood: mood,
+      
+    //   }
+    //   EditTask(objectToSave)
+      
+
+    //   return newCheckedValue; 
+
+    // })
+
+
+    setCheckedTask(!checkedTask)
+
+    const objectToSave = {
+      ID: taskID,
+      checked: checkedTask,
+      name: task,
+      description: desc,
+      date:date,
+      mood: mood,
+      }
+    EditTask(objectToSave)
+    
+    
+
+
+  }
+
+
+
   // Short taskname and description text
 
   // const taskName = task.length > 20 ? task.slice(0, 20) : task;
@@ -72,8 +123,9 @@ export function TaskQuickInfo({task,desc,taskID,date, mood }){
       flex  gap-1 bg-gradient-to-l from-black bg-orange-900  rounded-xl  " >
  
        <span className="  ">
-       <input id="default-checkbox" type="checkbox" value="" class="appearance-none w-4 h-4
-        border  border-white rounded-2xl checked:bg-white mt-1 " />
+        <input id="default-checkbox" type="checkbox" onChange={(e) => {handleCheckedTask(taskID)}} 
+        value="" checked={checked} class="appearance-none w-4 h-4
+          border  border-white rounded-2xl checked:bg-white mt-1 " />
  
        </span>
  
@@ -93,7 +145,7 @@ export function TaskQuickInfo({task,desc,taskID,date, mood }){
        </span>
  
        <span className="flex  items-center gap-2 md:gap-4 transition-all">
-         <button  onClick={() => {deleteTask(taskID)}}
+         <button  onClick={() => {deleteTask(taskID); handleDeleteTask(taskID)}}
          className="bg-black bg-opacity-70 border p-1 border-orange-700
           w-6  md:w-7 md:h-7 rounded-md ">
            <img src="/img/icons/deleteIcon.svg" alt="" className="" />

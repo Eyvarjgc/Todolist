@@ -33,12 +33,19 @@ export function EditTaskForm({taskName, taskDescription, taskId, HandleEditForm,
  
   const objectToSave = {
   ID: taskId,
+  checked: false,
+
   name: changeNameTask,
   description: changeDescriptionTask,
   date:taskDate,
   mood: mood,
 
 }
+
+const existingTasks = JSON.parse(localStorage.getItem('TASKS')) || [];
+
+
+
 
   return( 
 

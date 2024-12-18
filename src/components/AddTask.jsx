@@ -11,7 +11,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import { Button } from '@mui/material';
+
 
 
 export function AddTask({OnSaveTask, onSubmit}){
@@ -36,6 +36,7 @@ export function AddTask({OnSaveTask, onSubmit}){
 
   const objectToSave = {
     ID: taskObject.length === 0  ? 1 : taskObject[taskObject.length - 1].ID + 1,
+    checked: false,
     name: changeNameTask,
     description: changeDescriptionTask,
     date: taskDate,
@@ -43,6 +44,12 @@ export function AddTask({OnSaveTask, onSubmit}){
 
   }
 
+  const existingTasks = JSON.parse(localStorage.getItem('TASKS')) || [];
+
+
+
+
+  
   const handleTaskName = (event) => {
     const { value, scrollHeight } = event.target;
     setChangeNameTask(value);
@@ -64,8 +71,7 @@ export function AddTask({OnSaveTask, onSubmit}){
 
   } ,[])
   
-  
-  
+ 
 return(
   <>
     {/*Warning = True, then i`ll show the warning */}
@@ -164,8 +170,7 @@ return(
             OnSaveTask()
             onSubmit(objectToSave)
             setAddingTask(false) || setAddTaskMobile(false);
-
-            console.log(objectToSave);
+            // localStorage.setItem('TASKS', JSON.stringify([...existingTasks, objectToSave]))
             
           }} 
           className="px-2 lg:px-4 rounded-lg bg-orange-800
