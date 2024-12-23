@@ -52,7 +52,7 @@ useEffect(
   return(
     <>
     <button className='border-2 px-24 py-2 flex justify-center items-center 
-    rounded-md hover:bg-slate-100 transition-all'
+    rounded-md hover:bg-slate-100 transition-all text-wrap'
     onClick={() => login()}>
       <img src="/img/googleIcon.webp" alt="" className='w-[30px]' />
       <span className='font-bold'>Continue with Google</span> </button>
