@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
@@ -12,16 +12,18 @@ export function Homepage(){
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(null)
 
-  const {taskObject, filteredTaskObject, searchingTask} = useAppContext()
+  const {setTaskObject, taskObject, filteredTaskObject, searchingTask,profile} = useAppContext()
 
   const existingTasks = JSON.parse(localStorage.getItem('TASKS')) || [];
 
+          
+  {taskObject == null && location.reload()}  
   
   
-  
-  const listItem =taskObject.map((item) => 
+  const listItem = taskObject.map((item) => 
     
-    <TaskQuickInfo checked={item.checked} desc={item.description} key={item.ID} task={item.name} taskID={item.ID} date={item.date} mood={item.mood}/>
+    <TaskQuickInfo checked={item.checked} desc={item.description} 
+    key={item.ID} task={item.name} taskID={item.ID} date={item.date} mood={item.mood}/>
     
   )
   

@@ -36,7 +36,8 @@ export function TaskQuickInfo({checked,task,desc,taskID,date, mood }){
   } ,[])
  
   
-  const showDate = `${date.$D} ${taskMonth}`
+  // const showDate = `${date.$D} ${taskMonth}`
+  const showDate = date
   
   const existingTasks = JSON.parse(localStorage.getItem('TASKS')) || [];
 

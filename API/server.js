@@ -5,12 +5,12 @@ import cors from 'cors'
 import {createTodoRouter} from './routers/todo.js'
 
 const app = express()
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 5000
 
 app.use(express.static('public'))
 app.use(cors('*'))
 
-app.use('/API/todo', createTodoRouter())
+app.use('/todoList', createTodoRouter())
 
 
 app.listen(PORT, () => {
