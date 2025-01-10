@@ -15,24 +15,18 @@ import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 
 
 export function AddTask({OnSaveTask, onSubmit}){
+
   const {taskObject, setAddingTask, setAddTaskMobile, inputRef, day, date} = useAppContext()
   const [changeNameTask, setChangeNameTask] = useState('')
   const [changeDescriptionTask, setDescriptionTask] = useState('')
   const [taskDate, setTaskDate] = useState(dayjs(date))
   const [mood, setMood] = useState('')
-
-
   const [warning, setWarning] = useState('')
   const [popUp, setPopUp] = useState(false)
   const [moodPopUp, setMoodPopUp] = useState(false)
-
-
   const {HandleCancelTask} = useHandleTask()
 
-  // Auto Height for input  taskname and taskdescription
-  const [taskHeight, setTaskHeight] = useState("auto");
-  const [descHeight, setDesHeight] = useState("auto");
-
+  
 
   const objectToSave = {
     ID: taskObject.length === 0  ? 1 : taskObject[taskObject.length - 1].ID + 1,
@@ -44,25 +38,25 @@ export function AddTask({OnSaveTask, onSubmit}){
 
   }
 
-  const existingTasks = JSON.parse(localStorage.getItem('TASKS')) || [];
 
-
-
-
-  
+  // Change input size
+  // Auto Height for input  taskname and taskdescription
+  const [taskHeight, setTaskHeight] = useState("auto");
+  const [descHeight, setDesHeight] = useState("auto");
   const handleTaskName = (event) => {
     const { value, scrollHeight } = event.target;
     setChangeNameTask(value);
     
     setTaskHeight(`${scrollHeight}px`);
   };
-    
   const handleTaskDes = (event) => {
     const { value, scrollHeight } = event.target;
     setDescriptionTask(value);
     
     setDesHeight(`${scrollHeight}px`);
   };
+  // ||||||||
+
   const handleClick = () => {
     inputRef.current.focus()
   }
@@ -72,9 +66,10 @@ export function AddTask({OnSaveTask, onSubmit}){
   } ,[])
   
  
+
+
 return(
   <>
-    {/*Warning = True, then i`ll show the warning */}
     {warning && <CancelTask  setWarning={setWarning} />}
     
     <div className=" flex py-4  justify-evenly items-center w-full  orbitron  ">
@@ -123,7 +118,11 @@ return(
                 <LocalizationProvider dateAdapter={AdapterDayjs} >
                   <DemoContainer components={['DateCalendar']}>
                     <DemoItem >
-                      <DateCalendar value={taskDate} onChange={(newValue) => {setTaskDate(newValue); setPopUp(!popUp) } } />
+                      <DateCalendar value={taskDate} onChange={(newValue) => {
+                        // const dateToAdd = `${newValue.$y}-${newValue.$M}-${newValue.$D}`
+                        
+
+                       setTaskDate(dayjs(newValue)); setPopUp(!popUp) } } />
                     </DemoItem>
                 </DemoContainer>
               </LocalizationProvider> 

@@ -1,33 +1,24 @@
 import {  useState, useEffect } from "react"
 import { googleLogout, useGoogleLogin } from "@react-oauth/google"
 import {useNavigate } from 'react-router-dom'
-
+import axios from 'axios'
 
 import { useAppContext } from "../Hooks/useAppContext"
-
+import { red } from "@mui/material/colors"
+import { useApiCall } from "./useApiCall"
 
 
 export function UserProfile(){
 
-  const {profile, setProfile} = useAppContext()
+  const {profile, setProfile, setTaskObject, taskObject} = useAppContext()
   const [profileView, setProfileView] = useState(false)
+  const [profileSetted, setProfileSetted] = useState('')
+  const [user_email, setUser_email] = useState('')
+
   
   const navigate = useNavigate()
 
 
-  const logOut = () => {
-    googleLogout();
-    localStorage.removeItem('user')
-    setProfile(null);
-    navigate('/login')
-  };
-
-
-  const login = useGoogleLogin({
-    onSuccess: (codeResponse) => setUser(codeResponse),
-    onError: (error) => console.log('Login Failed:', error)
-  });
-  
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user')
@@ -42,6 +33,51 @@ export function UserProfile(){
 
     }
   }, [])
+
+
+  useEffect( () => {
+    const fetchData = async () => {
+      try{
+        const {Token} = JSON.parse(localStorage.getItem('user'))
+
+        const res = await axios.get(`http://localhost:5000/todoList/userTask`, {
+          headers:{
+            "Content-Type": `application/json`,
+            "authorization": `Bearer ${Token}`
+          }
+        })
+
+        // Tasks pass from back to front
+        setTaskObject(res.data)
+
+        }catch(err){
+        console.log(err);
+      }
+    }
+
+    {profile != null  && fetchData() }
+
+    
+  },[profile])
+
+  
+
+  const logOut = () => {
+    googleLogout();
+    localStorage.removeItem('user')
+    setProfile(null);
+    navigate('/login')
+    setTaskObject(null)
+  };
+
+
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => setUser(codeResponse),
+    onError: (error) => console.log('Login Failed:', error)
+  });
+  
+
+
   
 
 
@@ -60,7 +96,7 @@ export function UserProfile(){
         className="w-[30px] sm:w-[40px] rounded-3xl  group-hover:opacity-50"/>
 
         <p className="font-medium userName hidden md:block 
-        group-hover:opacity-50 transition-all">| {profile.given_name}</p>
+        group-hover:opacity-50 transition-all text-sm">| {profile.name}</p>
         
         <span className="hidden sm:block group-hover:opacity-50
         transition-all "><img src="/src/assets/icons/lowArrow.png"

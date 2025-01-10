@@ -4,6 +4,8 @@ import { useHandleTask } from "../Hooks/useHandleTask";
 import { EditTaskForm } from "../components/EditTask";
 import { FormTask } from "./TaskManage";
 import { useAppContext } from "../Hooks/useAppContext";
+import dayjs from 'dayjs';
+import axios from "axios";
 
 export function TaskQuickInfo({checked,task,desc,taskID,date, mood }){
   const {deleteTask,EditTask} = useHandleTask()
@@ -28,19 +30,37 @@ export function TaskQuickInfo({checked,task,desc,taskID,date, mood }){
   "December"
 
   ]
-
+  
+  const divideDate =  dayjs(date)
+  
   useEffect( () => {
     months.forEach((element, i) => {
-      i == date.$M && setTaskMonth(element);
+      i == divideDate.$M  && setTaskMonth(element);
     });
   } ,[])
- 
-  
-  const showDate = `${date.$D} ${taskMonth}`
+
+  const showDate = `${divideDate.$D} ${taskMonth}`
   
   const existingTasks = JSON.parse(localStorage.getItem('TASKS')) || [];
 
-  const handleDeleteTask = (taskID) => {
+  const handleDeleteTask = async (taskID) => {
+    try {
+      const {Token} = JSON.parse(localStorage.getItem('user'))
+
+      const res = await axios.delete(`http://localhost:5000/todoList/deleteTask/${taskID}`, {
+        headers:{
+          "Content-Type": "application/json",
+          "authorization": `Bearer ${Token}`
+        }
+      })
+
+
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+
     const updateTask = existingTasks.filter(task => task.ID !== taskID)
 
     localStorage.setItem('TASKS', JSON.stringify(updateTask))

@@ -35,7 +35,7 @@ export const TaskProvider = ({children}) => {
   const [addingTask, setAddingTask] = useState(false)
   const [addTaskMobile, setAddTaskMobile] = useState(false)
   const [ isEditing, setIsEditing] = useState(false)
-  const [ filteredTaskObject, setFilteredTaskObject] = useState(false)
+  const [ filteredTaskObject, setFilteredTaskObject] = useState([])
   const [ searchingTask, setSearchingTask] = useState(false)
 
 
