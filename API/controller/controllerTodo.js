@@ -97,6 +97,18 @@ class TodoController{
     res.status(200).send(data)
 
   }
+
+
+  static async updateTask(req,res){
+    const {email} = req.user
+    
+    const {ID} = req.params
+    const body = req.body
+
+    const data = await TodoModel.updateTask(email,ID, body)
+
+    res.status(200).send(data)
+  }
 }
 
 

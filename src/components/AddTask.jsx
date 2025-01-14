@@ -169,6 +169,7 @@ return(
             OnSaveTask()
             onSubmit(objectToSave)
             setAddingTask(false) || setAddTaskMobile(false);
+            
             // localStorage.setItem('TASKS', JSON.stringify([...existingTasks, objectToSave]))
             
           }} 

@@ -11,7 +11,7 @@ export function FormTask({children }){
   const {taskObject, setTaskObject, isEditing, setIsEditing} = useAppContext() 
   const [warning, setWarning] = useState('')
   const [currentTask, setCurrentTask] = useState(null);
-
+  
 
 
   function handleSaveTask(){

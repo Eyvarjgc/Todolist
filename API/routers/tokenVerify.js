@@ -4,6 +4,7 @@ import { SECRET_KEY } from '../db_config.js';
 
 export default function verifyToken(req,res, next){
   const authHeader = req.headers.authorization
+  console.log(authHeader);
   
   const token = authHeader.split(' ')[1];
   

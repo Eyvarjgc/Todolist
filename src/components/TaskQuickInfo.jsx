@@ -45,6 +45,7 @@ export function TaskQuickInfo({checked,task,desc,taskID,date, mood }){
 
   const handleDeleteTask = async (taskID) => {
     try {
+      
       const {Token} = JSON.parse(localStorage.getItem('user'))
 
       const res = await axios.delete(`http://localhost:5000/todoList/deleteTask/${taskID}`, {

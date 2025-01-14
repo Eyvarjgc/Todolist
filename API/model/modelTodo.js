@@ -2,6 +2,7 @@ import { createPool } from 'mysql2/promise';
 
 
 import { HOST, USER, DB_PORT, DATABASE, PASSWORD } from '../db_config.js';
+import { query } from 'express';
 
 
 
@@ -131,13 +132,40 @@ class TodoModel{
       const query_ = `DELETE FROM userTask where ID = ?`
       CONNECTION.query(query_, [ID])
 
-      return `Task has been succesfully deleted`  
+      return `Task has been succesfully deleted`
 
     } catch (error) {
       throw error
     }
 
 
+  }
+
+  static async updateTask(email,ID, data){
+    try {
+      const {
+        checked,
+        name,
+        description,
+        date,
+        mood} = data
+
+        
+
+      const [result] = await CONNECTION.query(`select * from userTask where ID = ?`, [ID])
+      if(result == 0) return false
+
+      const query = 'UPDATE userTask SET checked = ?, name = ?, description = ?, date = ?, mood = ? WHERE ID = ?'
+      
+      await CONNECTION.query(query, [checked, name,description,date,mood, ID] )
+
+      return `Task has been successfully updated`
+      
+
+
+    } catch (error) {
+      throw error
+    }
   }
 
 }
