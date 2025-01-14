@@ -5,6 +5,8 @@ import { useContext, useEffect, useState } from "react";
 import { useHandleTask } from '../Hooks/useHandleTask';
 import Mood from '../components/Mood';
 
+import { v4 as uuidv4 } from 'uuid';
+
 // CALENDAR VIEW
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -26,10 +28,9 @@ export function AddTask({OnSaveTask, onSubmit}){
   const [moodPopUp, setMoodPopUp] = useState(false)
   const {HandleCancelTask} = useHandleTask()
 
-  
 
   const objectToSave = {
-    ID: taskObject.length === 0  ? 1 : taskObject[taskObject.length - 1].ID + 1,
+    ID: uuidv4(),
     checked: false,
     name: changeNameTask,
     description: changeDescriptionTask,

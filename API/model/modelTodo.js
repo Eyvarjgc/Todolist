@@ -89,8 +89,7 @@ class TodoModel{
 
   static async postUserTask(user_email, body) {
     try {
-      const id = crypto.randomUUID()
-      const {checked,name,description,date,mood} = body
+      const {ID, checked,name,description,date,mood} = body
       
       
       const [resultAddingTask] = await 
@@ -98,14 +97,14 @@ class TodoModel{
       INSERT INTO userTask(
       ID,checked,name,description,date,mood) 
       VALUES(?, ?,?,?,?,?); `,
-      [id, checked,name,description,date,mood])
+      [ID, checked,name,description,date,mood])
   
       const [resultAddingTaskToUser] = await 
       CONNECTION.query(`
         INSERT INTO userProfileTask(
         user_email, task_id)
         VALUES( ?, ? ) ;`,
-         [user_email, id])
+         [user_email, ID])
 
         
         

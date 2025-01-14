@@ -8,7 +8,7 @@ const GoogleAuth = () => {
   const [loginData,   setLoginData] = useState()
 
 
- const clientId = '474232570989-vtdkosng66s4ea9jalgnnhnqrdnn318v.apps.googleusercontent.com';
+ const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 
  

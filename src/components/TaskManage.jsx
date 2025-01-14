@@ -41,6 +41,7 @@ export function FormTask({children }){
           body: JSON.stringify(task),
         }); 
         
+        console.log(task)
         
         setTaskObject([...taskObject, task])
 
