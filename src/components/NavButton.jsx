@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom" 
 import { useState } from "react";
-
-import { AddTask } from "./AddTask";
+import { FormTask } from "./TaskManage";
 
 import { useAppContext } from '../Hooks/useAppContext';
 
 export function NavButton({img, buttonValidation, to}){
   const {addingTask, setAddingTask, addTaskMobile, setAddTaskMobile} = useAppContext() 
-  
+
+
 
   return(
     <>
@@ -19,7 +19,10 @@ export function NavButton({img, buttonValidation, to}){
         <div className="fixed w-full lg:h-1/2   m-auto left-0
         lg:right-32 lg:top-0  bottom-20 lg:bottom-[10%] ">
 
-        <AddTask  hideButton={setAddTaskMobile}/> 
+        {/* <AddTask  hideButton={setAddTaskMobile}/>  */}
+
+        <FormTask  />  
+
         </div>
       </div>
     }

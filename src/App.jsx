@@ -19,11 +19,14 @@ import { BottomView } from './sections/BottomView';
 import { UserProvider } from './Hooks/useContexts';
 import { TaskProvider } from './Hooks/useContexts';
 
+import GoogleAuth from './features/GoogleAuth';
 
 
 function App() {
   const location = useLocation()
 
+
+  
 
   // const login = useGoogleLogin({
   //   onSuccess: (codeResponse) => setUser(codeResponse),
@@ -45,12 +48,13 @@ function App() {
   //   }
   // }, [])
   
-  
+
 
   return (
     <div className=' text-white  '>
     <TaskProvider>
       <UserProvider>
+        
 
 
       { location.pathname === '/login' ? <Login /> :
