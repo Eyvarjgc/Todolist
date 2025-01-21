@@ -1,15 +1,14 @@
-{
-  "version": 2,
-  "builds": [
+{ "version": 2, "rewrites": [{ "source": "/(.*)", "destination": "/api" }], 
+
+
+"headers": [
     {
-      "src": "GoogleAuth.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "GoogleAuth.js"
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "http://localhost:5173" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
+      ]
     }
   ]
-}
+ }

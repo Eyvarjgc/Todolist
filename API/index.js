@@ -1,4 +1,4 @@
-import app from '../GoogleAuth'
+import app from '../backend/GoogleAuth'
 
 
 export default app;

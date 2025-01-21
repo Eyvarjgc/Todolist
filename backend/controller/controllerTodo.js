@@ -27,7 +27,7 @@ class TodoController{
 
   static async test (req, res) {
     const data = await TodoModel.test()
-
+    
     
     res.status(200).send({success:true, data: data})
   }

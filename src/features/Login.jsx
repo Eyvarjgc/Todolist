@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import {useAppContext} from '../Hooks/useAppContext';
+const websiteURL = import.meta.env.VITE_WEBSITE;
 
 
 export function Login(){
@@ -62,7 +63,7 @@ async function getNewToken(){
 
 const handleLogin = async (googleData) => {
   
-  const res = await axios.post('http://localhost:5000/google-login', {
+  const res = await axios.post(`${websiteURL}/google-login`, {
   token: googleData.credential},
   {headers: {
   'Content-Type': 'application/json',
