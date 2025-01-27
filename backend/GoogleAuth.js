@@ -7,7 +7,7 @@ import cors from 'cors';
 import todoRouter from './routers/routerTodo.js';
 
 
-import { SECRET_KEY, REFRESH_KEY, HOST,USER, DB_PORT,DATABASE,PASSWORD, ORIGIN } from './db_config.js';
+import { SECRET_KEY, REFRESH_KEY, HOST,USER, DB_PORT,DATABASE,PASSWORD, ORIGIN, CLIENTID } from './db_config.js';
 
 const CONNECTION =  createPool({
   host: HOST,
@@ -21,22 +21,22 @@ const CONNECTION =  createPool({
 
 const app = express();
 const PORT = 5000;
-const client = new OAuth2Client();
+const client = new OAuth2Client(CLIENTID);
 
 app.use(json());
 
 
 app.use(cors({
-  origin: 'http://localhost:5173', 
+  origin: ORIGIN, 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials:true, 
 }));
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:5173'); // Permitir tu dominio
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Métodos permitidos
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Encabezados permitidos
+  res.header('Access-Control-Allow-Origin', ORIGIN);
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); 
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); 
   if (req.method === 'OPTIONS') {
     res.sendStatus(204); 
   } else {
@@ -46,17 +46,6 @@ app.use((req, res, next) => {
 
 
 todoRouter.use(json())
-
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', 'http://localhost:5173'); // Permite tu dominio
-//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Métodos permitidos
-//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Encabezados permitidos
-//   if (req.method === 'OPTIONS') {
-//     res.sendStatus(204); // Responde exitosamente a la solicitud preflight
-//   } else {
-//     next();
-//   }
-// });
 
 
 app.use('/home', (req,res) => {
@@ -70,9 +59,9 @@ app.use('/todoList', todoRouter)
 
 app.post('/google-login', async (req, res) => {
   try {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173'); // Permitir tu dominio
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Origin', ORIGIN);
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
     
     const { token } = req.body;

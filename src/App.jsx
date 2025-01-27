@@ -19,7 +19,6 @@ import { BottomView } from './sections/BottomView';
 import { UserProvider } from './Hooks/useContexts';
 import { TaskProvider } from './Hooks/useContexts';
 
-import GoogleAuth from './features/GoogleAuth';
 
 
 function App() {
@@ -28,25 +27,7 @@ function App() {
 
   
 
-  // const login = useGoogleLogin({
-  //   onSuccess: (codeResponse) => setUser(codeResponse),
-  //   onError: (error) => console.log('Login Failed:', error)
-  // });
-  
 
-  // useEffect(() => {
-  //   const storedUser = localStorage.getItem('user')
-  //   if(storedUser){
-  //     const userData = JSON.parse(storedUser)
-  //     setProfile(userData)
-
-
-  //   }
-  //   else{
-  //     navigate('/login')
-
-  //   }
-  // }, [])
   
 
 

@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useAppContext } from "../Hooks/useAppContext"
 import { red } from "@mui/material/colors"
 import { useApiCall } from "./useApiCall"
+const ENDPOINT = import.meta.env.VITE_ENDPOINT;
 
 
 export function UserProfile(){
@@ -15,8 +16,13 @@ export function UserProfile(){
   const [profileSetted, setProfileSetted] = useState('')
   const [user_email, setUser_email] = useState('')
 
+  const [generateToken, setGenerateToken] = useState(false)
   
   const navigate = useNavigate()
+
+
+
+
 
 
 
@@ -38,20 +44,36 @@ export function UserProfile(){
   useEffect( () => {
     const fetchData = async () => {
       try{
-        const {Token} = JSON.parse(localStorage.getItem('user'))
+        const Token = JSON.parse(localStorage.getItem('Token'))
 
-        const res = await axios.get(`http://localhost:5000/todoList/userTask`, {
+        const res = await axios.get(`${ENDPOINT}/todoList/userTask`, {
           headers:{
             "Content-Type": `application/json`,
             "authorization": `Bearer ${Token}`
           }
         })
 
-        // Tasks pass from back to front
         setTaskObject(res.data)
 
         }catch(err){
-        console.log(err);
+          console.log(err);
+          if(err.status === 403){
+            const Refresh  = JSON.parse(localStorage.getItem('Refresh'))
+            
+            const res = await axios.post(`${ENDPOINT}/todoList/refresh`,{
+              Refresh: Refresh
+            } ,{
+              headers:{
+                "Content-Type": `application/json`,
+              }
+              
+            })
+            
+            localStorage.setItem('Token', JSON.stringify(res.data.accessToken));
+
+
+            
+          }
       }
     }
 
@@ -61,6 +83,9 @@ export function UserProfile(){
   },[profile])
 
   
+
+
+
 
   const logOut = () => {
     googleLogout();

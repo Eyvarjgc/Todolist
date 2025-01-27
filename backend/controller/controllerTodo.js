@@ -6,9 +6,28 @@ import { REFRESH_KEY, SECRET_KEY } from '../db_config.js';
 class TodoController{
   // TODO: Refresh token
   static async refreshToken(req,res) {
-    const Refresh = req.headers.refreshtoken
+    
+    const {Refresh} = req.body
+    
     if (!Refresh) return res.sendStatus(401);
+    jwt.verify(Refresh, REFRESH_KEY,
+      (err, decoded) => {
+          if (err) {
+              return res.status(406).json({ message: 'Unauthorized' });
+          }
 
+          else {
+              const accessToken = jwt.sign({
+                  email: 'eyvar31@gmail.com',
+              }, SECRET_KEY, {
+                  expiresIn: '1h'
+              });
+
+              return res.json({ accessToken });
+          }
+
+      })
+    
 
 
     jwt.verify(Refresh, REFRESH_KEY, (err,user) => {
@@ -17,8 +36,11 @@ class TodoController{
       
     })
 
-    res.send(Refresh)
+    // res.send(Refresh)
 
+   
+
+ 
 
     
     

@@ -8,7 +8,7 @@ const todoRouter = Router()
 
 
 todoRouter.get('/test', TodoController.test)
-todoRouter.get('/refresh', TodoController.refreshToken)
+todoRouter.post('/refresh', TodoController.refreshToken)
 
 
 todoRouter.get('/userInfo',verifyToken, TodoController.getUserInfo)

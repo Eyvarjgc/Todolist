@@ -5,6 +5,7 @@ import { useHandleTask } from "../Hooks/useHandleTask"
 import { AddTask } from "./AddTask"
 import { useApiCall } from "../features/useApiCall"
 import axios from "axios"
+const ENDPOINT = import.meta.env.VITE_ENDPOINT;
 
 export function FormTask({children }){
   const {EditTask} = useHandleTask()
@@ -32,8 +33,8 @@ export function FormTask({children }){
     }else{
       try{
         
-        const {Token} = JSON.parse(localStorage.getItem('user'))
-        const response = await fetch('http://localhost:5000/todoList/addTask', {
+        const Token = JSON.parse(localStorage.getItem('Token'))
+        const response = await fetch(`${ENDPOINT}/todoList/addTask`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 
             "authorization": `Bearer ${Token}`
@@ -41,7 +42,6 @@ export function FormTask({children }){
           body: JSON.stringify(task),
         }); 
         
-        console.log(task)
         
         setTaskObject([...taskObject, task])
 

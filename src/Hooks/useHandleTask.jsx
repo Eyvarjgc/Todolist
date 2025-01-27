@@ -3,6 +3,7 @@ import { useAppContext } from "./useAppContext"
 import { useState, useEffect } from "react"
 import axios from "axios"
 
+const ENDPOINT = import.meta.env.VITE_ENDPOINT;
 
 
 export function useHandleTask(){
@@ -24,9 +25,9 @@ export function useHandleTask(){
   async function EditTask(objectToSave){
     try {
       const {ID} = objectToSave
-      const {Token} = JSON.parse(localStorage.getItem('user'))
+      const Token = JSON.parse(localStorage.getItem('Token'))
       
-      const res = await axios.put(`http://localhost:5000/todoList/updateTask/${ID}`,
+      const res = await axios.put(`${ENDPOINT}/todoList/updateTask/${ID}`,
         JSON.stringify(objectToSave),
         {
         headers:{
@@ -35,8 +36,7 @@ export function useHandleTask(){
         },
       })
     
-      console.log(res);
-      
+t      
     
     setTaskObject((prevTask) => {
     const index = prevTask.findIndex((item) => item.ID === objectToSave.ID)

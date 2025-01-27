@@ -6,6 +6,7 @@ import { FormTask } from "./TaskManage";
 import { useAppContext } from "../Hooks/useAppContext";
 import dayjs from 'dayjs';
 import axios from "axios";
+const ENDPOINT = import.meta.env.VITE_ENDPOINT;
 
 export function TaskQuickInfo({checked,task,desc,taskID,date, mood }){
   const {deleteTask,EditTask} = useHandleTask()
@@ -46,9 +47,9 @@ export function TaskQuickInfo({checked,task,desc,taskID,date, mood }){
   const handleDeleteTask = async (taskID) => {
     try {
       
-      const {Token} = JSON.parse(localStorage.getItem('user'))
+      const Token = JSON.parse(localStorage.getItem('Token'))
 
-      const res = await axios.delete(`http://localhost:5000/todoList/deleteTask/${taskID}`, {
+      const res = await axios.delete(`${ENDPOINT}/todoList/deleteTask/${taskID}`, {
         headers:{
           "Content-Type": "application/json",
           "authorization": `Bearer ${Token}`

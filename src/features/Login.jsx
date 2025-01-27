@@ -5,7 +5,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import {useAppContext} from '../Hooks/useAppContext';
-const websiteURL = import.meta.env.VITE_WEBSITE;
+const ENDPOINT = import.meta.env.VITE_ENDPOINT;
+
 
 
 export function Login(){
@@ -14,40 +15,9 @@ export function Login(){
   const navigate = useNavigate()
 
   
-// const login = useGoogleLogin({
-  
-//   onSuccess: (codeResponse) => {setUser(codeResponse); console.log(codeResponse)}
-//   ,
-//   onError: (error) => console.log('Login Failed:', error)
-// });
-
-
-// useEffect(
-//   () => {
-//       if (user) {
-        
-        
-//           axios
-//               .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
-//                   headers: {
-//                       Authorization: `Bearer ${user.access_token}`,
-//                       Accept: 'application/json'
-//                   }
-//               })
-//               .then((res) => {
-//                   setProfile(res.data);
-//                   localStorage.setItem('user', JSON.stringify(res.data))
-//                   navigate('/')
-//               })
-//               .catch((err) => console.log(err));
-
-//       }
-//   },
-//   [ user ]
-// );
 
 async function getNewToken(){
-  const {Refresh} = JSON.parse(localStorage.getItem('user'))
+  const Refresh = JSON.parse(localStorage.getItem('Refresh'))
 
   const res = await axios.post('http://localhost:5000/todoList/refreshToken', {
     refreshToken: Refresh
@@ -63,23 +33,27 @@ async function getNewToken(){
 
 const handleLogin = async (googleData) => {
   
-  const res = await axios.post(`${websiteURL}/google-login`, {
+  const res = await axios.post(`${ENDPOINT}/google-login`, {
   token: googleData.credential},
   {headers: {
   'Content-Type': 'application/json',
   },
   });
 
+  
   setProfile(res.data);
   localStorage.setItem('user', JSON.stringify(res.data));
+  localStorage.setItem('Token', JSON.stringify(res.data.Token));
+  localStorage.setItem('Refresh', JSON.stringify(res.data.Refresh));
+
   navigate('/')
   };
 
   const getWithToken = async() => {
-    const {Refresh} = JSON.parse(localStorage.getItem('user'))
-    const {Token} = JSON.parse(localStorage.getItem('user'))
+    const Refresh = JSON.parse(localStorage.getItem('Refresh'))
+    const Token = JSON.parse(localStorage.getItem('Token'))
 
-    const res = axios.get('http://localhost:5000/todoList/userInfo', {
+    const res = axios.get(`${ENDPOINT}/todoList/userInfo`, {
       header:{
         'Content-Type': 'application/json',
         'authorization': `Bearer ${Token}`
@@ -103,6 +77,8 @@ const handleLogin = async (googleData) => {
     <GoogleLogin
 
         onSuccess={credentialResponse => {
+          
+          
         handleLogin(credentialResponse)
       }}
        cookiePolicy={'single_host_origin'}
