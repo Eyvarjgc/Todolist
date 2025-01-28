@@ -30,12 +30,11 @@ class TodoController{
     
 
 
-    jwt.verify(Refresh, REFRESH_KEY, (err,user) => {
-      if (err) return res.sendStatus(403);
-      const NewAccessToken = jwt.sign(user, SECRET_KEY)
+    // jwt.verify(Refresh, REFRESH_KEY, (err,user) => {
+    //   if (err) return res.sendStatus(403);
+    //   const NewAccessToken = jwt.sign(user, SECRET_KEY)
       
-    })
-
+    // })
     // res.send(Refresh)
 
    
@@ -119,6 +118,16 @@ class TodoController{
 
   }
 
+  static async postCompleteTask(req,res){
+    const {ID} = req.params
+    const {valueToSend} = req.body
+
+    
+
+    const data = await TodoModel.postCompleteTask(ID, valueToSend)
+
+    res.status(200).send(data)
+  }
 
   static async updateTask(req,res){
     const {email} = req.user

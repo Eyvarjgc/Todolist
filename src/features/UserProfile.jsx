@@ -124,12 +124,12 @@ export function UserProfile(){
         group-hover:opacity-50 transition-all text-sm">| {profile.name}</p>
         
         <span className="hidden sm:block group-hover:opacity-50
-        transition-all "><img src="/src/assets/icons/lowArrow.png"
+        transition-all "><img src="/src/assets/icons/arrowLow.png"
         alt="" className="w-[20px]"/></span>
 
 
         <ul className=" bg-gray-700 bg-opacity-80 lg:bg-opacity-45 userOptions
-        rounded-3xl text-white  z-50 shadow-md hidden px-2 mt-2 lg:mt-0">
+        rounded-3xl text-white  z-50 shadow-md hidden px-2  lg:mt-0">
           <li className="p-2 ">
 
             <button className="flex justify-start items-center gap-3

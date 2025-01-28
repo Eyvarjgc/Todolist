@@ -36,7 +36,6 @@ export function useHandleTask(){
         },
       })
     
-t      
     
     setTaskObject((prevTask) => {
     const index = prevTask.findIndex((item) => item.ID === objectToSave.ID)
@@ -57,6 +56,7 @@ t
   
   }
 
+ 
   function deleteTask(taskID){
     const filterTaskByID = taskObject.filter(Element => Element.ID != taskID)
     setTaskObject(filterTaskByID)

@@ -70,28 +70,25 @@ export function TaskQuickInfo({checked,task,desc,taskID,date, mood }){
     
   }
 
-  const handleCheckedTask = (taskID) => {
-    // setCheckedTask(prevCheckTask => {
-    //   const newCheckedValue = !prevCheckTask
-
-    //   const objectToSave = {
-    //     ID: taskID,
-    //     checked: newCheckedValue,
-    //     name: task,
-    //     description: desc,
-    //     date:date,
-    //     mood: mood,
-      
-    //   }
-    //   EditTask(objectToSave)
+  
+  const handleCheckedTask =async (taskID) => {
+    try{
+      let valueToSend = 0
+      {checkedTask == true ? valueToSend = 1 : valueToSend = 0}
       
 
-    //   return newCheckedValue; 
 
-    // })
+      const Token = JSON.parse(localStorage.getItem('Token'))
+      const res = await axios.put(`${ENDPOINT}/todoList/completeTask/${taskID}`,{valueToSend}, {
+        headers:{
+          "Content-Type": "application/json",
+          "authorization": `Bearer ${Token}`
+        }
+      })
 
+      
 
-    setCheckedTask(!checkedTask)
+      setCheckedTask(!checkedTask)
 
     const objectToSave = {
       ID: taskID,
@@ -103,7 +100,11 @@ export function TaskQuickInfo({checked,task,desc,taskID,date, mood }){
       }
     EditTask(objectToSave)
     
-    
+    }
+    catch(err){
+      console.log(err);
+      
+    }
 
 
   }

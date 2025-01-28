@@ -120,6 +120,17 @@ class TodoModel{
     }
 
   }
+  static async postCompleteTask(ID, value) {
+    try {
+      
+      const query = `UPDATE userTask set checked = ? where id = ?`
+      CONNECTION.query(query, [value, ID])
+
+      return `Task has been succesfully updated`
+    } catch (error) {
+      throw error
+    }
+  }
 
   static async deleteUserTask(user_email,ID) {
     try {
