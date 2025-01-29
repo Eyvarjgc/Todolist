@@ -73,21 +73,39 @@ const handleLogin = async (googleData) => {
 
 
   return(
-    <>
-    <GoogleLogin
+    <div className='w-full py-4 flex   text-black mt-8  flex-col '>
 
+    <div className='w-full flex py-4 items-center orbitron text-white gap-4 sm:gap-24  justify-center'>
+      <img src="/public/img/Tofacio.png" alt="" className='w-[50px]  sm:w-[80px] '/>
+      <h1 className=' text-xl md:text-2xl lg:text-3xl'>Topafist</h1>
+    </div>
+
+
+
+    <div className='flex flex-col lg:flex-row orbitron mx-auto mt-24 lg:mt-28 w-4/5 lg:gap-72 gap-40 items-center justify-center '>
+    <div className='flex-col gap-8 items-center justify-center text-center'>
+      <h1 className='text-3xl  lg:text-5xl text-white mb-8'>Sign in</h1>
+
+    <GoogleLogin size={'large'} shape='pill' text='signin_with'  width="100"  
         onSuccess={credentialResponse => {
-          
-          
         handleLogin(credentialResponse)
+
       }}
        cookiePolicy={'single_host_origin'}
       useOneTap
 
        onError={() => {
          console.log('Login Failed');
-       }}
-     />
+        }}
+      />
+
+    </div>
+
+      <img src="/public/img/ilus1.png" alt="" className='w-72 lg:w-96'/>
+
+
+
+    </div>
 
 
 
@@ -101,6 +119,6 @@ const handleLogin = async (googleData) => {
 
 
 
-    </>
+    </div>
   )
 }

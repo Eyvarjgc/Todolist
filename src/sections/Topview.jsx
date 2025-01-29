@@ -9,9 +9,9 @@ export function Topview(){
   <>
     <nav className="w-full py-4 flex justify-evenly items-center orbitron ">
 
-      <img src="/img/todoLogo.webp" 
+      <img src="/img/Tofacio.png" 
       alt="temporal logo" 
-      className="w-[30px] rounded-3xl sm:w-[40px] "/>
+      className="w-[30px]  sm:w-[60px] "/>
 
 
   <form class=" w-2/4">   
