@@ -18,7 +18,7 @@ export function BottomView(){
           <FormTask />
         </div> 
         : 
-        <div className="bg-red-600 z-0">< BottomTask  /> </div>
+        <div className=" z-0">< BottomTask  /> </div>
         }
 
 

@@ -18,9 +18,17 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 }
+@media (max-width: 900px) {
+  body{
+    background: linear-gradient(rgba(0, 0, 0, 0.868), rgba(0, 0, 0, 0.744)),url('/img/bg1.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
 
+  }
+}
 
 /* topview */
 

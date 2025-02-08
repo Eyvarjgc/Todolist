@@ -129,7 +129,7 @@ export function UserProfile(){
 
 
         <ul className=" bg-gray-700 bg-opacity-80 lg:bg-opacity-45 userOptions
-        rounded-3xl text-white  z-50 shadow-md hidden px-2  lg:mt-0">
+        rounded-3xl text-white  z-50 shadow-md hidden px-2   lg:mt-0">
           <li className="p-2 ">
 
             <button className="flex justify-start items-center gap-3

@@ -73,13 +73,12 @@ return(
   <>
     {warning && <CancelTask  setWarning={setWarning} />}
     
-    <div className=" flex py-4  justify-evenly items-center w-full  orbitron  ">
-
+    <div className=" flex py-4  justify-evenly items-center w-full  orbitron z-50 fixed top-1/4 md:relative  ">
     <div className="flex  flex-col 
     bg-gradient-to-b from-black bg-gray-700 border 
-    bg-opacity-10 w-[80%] lg:w-2/4  mx-auto my-0  text-xl rounded-xl
-    border-white lg:-translate-x-14 px-4 py-1  h-fit" >
-
+    w-[80%] lg:w-2/4  mx-auto my-0  text-xl rounded-xl
+    border-white lg:-translate-x-14 px-4 py-1  h-fit " >
+      
 
       {/* INPUTS NAME - DESCRIPTION */}
       <form className="mt-2">
@@ -100,16 +99,16 @@ return(
       </form>
 
       
-      <div className="flex gap-4 sm:justify-between  flex-wrap m-auto w-full items-center justify-center">
+      <div className="flex gap-4 sm:justify-between flex-wrap m-auto w-full items-center justify-center">
         {/* INPUTS DATE AND MOOD */}
-        <span className="flex gap-1 md:gap-2 lg:gap-4 text-sm mt-2">
+        <span className="flex gap-1 md:gap-2 lg:gap-4 text-xs sm:text-base   mt-2 ">
           
    
           <div class="relative">
 
               <button id="dateButton" onClick={() => {setPopUp(!popUp);
-              }} class="px-2 lg:px-4 border text-white
-          rounded-lg">
+              }} class="px-1 lg:px-4 border text-white
+          rounded-lg ">
                 Today
               </button>
 
@@ -155,12 +154,12 @@ return(
         </span>
 
         {/* BUTTONS SAVE AND CANCEL */}
-        <div className="flex gap-1 md:gap-2 lg:gap-4 text-sm mt-2  " >
+        <div className="flex gap-1 md:gap-2 lg:gap-4 text-xs sm:text-base   mt-2  " >
 
           <button onClick={() => {
             HandleCancelTask(changeNameTask, setWarning)}} 
 
-            className="px-2 lg:px-4 rounded-lg bg-white
+            className="px-1 lg:px-4 rounded-lg bg-white
           text-black">Cancel</button>
 
           <button onClick={(e) => {
@@ -174,7 +173,7 @@ return(
             // localStorage.setItem('TASKS', JSON.stringify([...existingTasks, objectToSave]))
             
           }} 
-          className="px-2 lg:px-4 rounded-lg bg-orange-800
+          className="px-1 lg:px-4 rounded-lg bg-orange-800
           bg-opacity-50 text-white ">Save</button>
 
         </div>

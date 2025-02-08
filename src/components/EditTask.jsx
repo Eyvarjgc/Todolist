@@ -60,7 +60,7 @@ const existingTasks = JSON.parse(localStorage.getItem('TASKS')) || [];
 
     <div className="flex  flex-col 
     bg-gradient-to-l from-black bg-orange-900  border 
-    bg-opacity-50 w-[95%] lg:w-full  mx-auto my-0  text-base rounded-xl
+    bg-opacity-50 w-[95%] lg:w-full  mx-auto my-0  text-sm   rounded-xl
     border-white  px-4 py-1 transition-all" >
 
 

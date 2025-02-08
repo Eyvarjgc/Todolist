@@ -133,7 +133,7 @@ export function TaskQuickInfo({checked,task,desc,taskID,date, mood }){
   <>
   {editingTask ?    
 
-    <div className="w-full ">
+    <div className="w-full z-40">
 
       <EditTaskForm taskName={task} taskDescription={desc} taskId={taskID} HandleEditForm={setEditingTask} editTask={setEditingTask}/>
       {/* <FormTask /> */}

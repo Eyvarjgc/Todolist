@@ -134,7 +134,7 @@ class TodoModel{
 
   static async deleteUserTask(user_email,ID) {
     try {
-
+      
 
       const query = `DELETE FROM userProfileTask where task_id = ?`
       CONNECTION.query(query, [ID])
