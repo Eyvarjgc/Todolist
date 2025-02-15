@@ -76,7 +76,7 @@ const handleLogin = async (googleData) => {
     <div className='w-full py-4 flex   text-black mt-8  flex-col '>
 
     <div className='w-full flex py-4 items-center orbitron text-white gap-4 sm:gap-24  justify-center'>
-      <img src="/public/img/Tofacio.png" alt="" className='w-[50px]  sm:w-[80px] '/>
+      <img src="/img/Tofacio.png" alt="" className='w-[50px]  sm:w-[80px] '/>
       <h1 className=' text-xl md:text-2xl lg:text-3xl'>Topafist</h1>
     </div>
 
@@ -101,7 +101,7 @@ const handleLogin = async (googleData) => {
 
     </div>
 
-      <img src="/public/img/ilus1.png" alt="" className='w-72 lg:w-96'/>
+      <img src="/img/ilus1.png" alt="" className='w-72 lg:w-96'/>
 
 
 
