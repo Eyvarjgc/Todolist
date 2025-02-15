@@ -1,6 +1,9 @@
 import { useRouteError } from "react-router-dom"
+import { useEffect } from "react"
 
 export function AiView(){
+
+
 
   return(
     <div className="flex flex-col orbitron ">

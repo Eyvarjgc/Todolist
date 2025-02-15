@@ -65,13 +65,13 @@ function App() {
           </Routes>
         </section>
 
-        <section className='hidden text-white lg:flex
+        {/* <section className='hidden text-white lg:flex
         bg-gradient-to-b from-orange-950 bg-black
         bg-opacity-30 w-1/4 h-96 ml-5 rounded-3xl p-4  border '>
 
           <AiView/> 
 
-        </section>
+        </section> */}
 
       </section>
 
