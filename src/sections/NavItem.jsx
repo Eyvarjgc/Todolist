@@ -10,10 +10,10 @@ export function NavItem(){
     fixed md:absolute bottom-1 right-0 left-0 p-2 border rounded-xl 
     mx-auto my-0 opacity-90 z-50
      lg:flex-col lg:relative '>
-        <NavButton  img={'homeIcon.svg'} to={'/'} />
-        <NavButton buttonValidation img={'addtaskIcon.svg'} />
+        <NavButton  img={'homeBlack.svg'} to={'/'}  />
+        <NavButton buttonValidation img={'addBlack.png'} />
         <TodayButton date={day} />
-        <NavButton  img={'doneIcon.svg'} to={'/finished'}/>
+        <NavButton  img={'doneeBlack.png'} to={'/finished'}/>
     </ul>
   )
 }

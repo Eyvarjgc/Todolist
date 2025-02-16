@@ -24,7 +24,10 @@ export function EditTaskForm({taskName, taskDescription, taskId, HandleEditForm,
 
   const [popUp, setPopUp] = useState(false)
   const [moodPopUp, setMoodPopUp] = useState(false)
+  const [showMood, setShowMood] =  useState('Mood')
   
+  const  [taskMonth, setTaskMonth] = useState('')
+
 
   useEffect(() => {
     inputRef.current.focus()
@@ -44,7 +47,35 @@ export function EditTaskForm({taskName, taskDescription, taskId, HandleEditForm,
 
 const existingTasks = JSON.parse(localStorage.getItem('TASKS')) || [];
 
+ const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
 
+  ]
+  
+  const divideDate =  dayjs(taskDate)
+  
+  useEffect( () => {
+    months.forEach((element, i) => {
+      i == divideDate.$M  && setTaskMonth(element);
+    });
+  } ,[])
+
+  const showDate = `${divideDate.$D} ${taskMonth}`
+
+  
+  console.log(mood);
+  
 
 
   return( 
@@ -61,7 +92,7 @@ const existingTasks = JSON.parse(localStorage.getItem('TASKS')) || [];
     <div className="flex  flex-col 
     bg-gradient-to-l from-black bg-orange-900  border 
     bg-opacity-50 w-[95%] lg:w-full  mx-auto my-0  text-sm   rounded-xl
-    border-white  px-4 py-1 transition-all" >
+    border-white  px-4 py-4 transition-all" >
 
 
       {/* INPUTS NAME - DESCRIPTION */}
@@ -87,7 +118,7 @@ const existingTasks = JSON.parse(localStorage.getItem('TASKS')) || [];
               <button id="dateButton" onClick={() => {setPopUp(!popUp);
               }} class="px-2 lg:px-4 border text-white
           rounded-lg">
-                Today
+                {showDate}
               </button>
 
               <div className='absolute bottom-0  lg:top-10 ring-0 z-50 bg-white rounded-xl'>
@@ -106,8 +137,14 @@ const existingTasks = JSON.parse(localStorage.getItem('TASKS')) || [];
                 </div>
           </div>
 
+          {mood ? <button  className="px-2 lg:px-4 border text-white
+          rounded-lg " onClick={() => {setMoodPopUp(!moodPopUp)}}>{mood}</button> : 
           <button  className="px-2 lg:px-4 border text-white
-          rounded-lg " onClick={() => {setMoodPopUp(!moodPopUp)}}>Mood</button>
+          rounded-lg " onClick={() => {setMoodPopUp(!moodPopUp)}}>Mood</button>}
+          
+           {/* <button  className="px-2 lg:px-4 border text-white
+           rounded-lg " onClick={() => {setMoodPopUp(!moodPopUp)}}>{showMood}</button> */}
+          
           {moodPopUp && 
           <div className="absolute  mt-8">
 
@@ -115,10 +152,11 @@ const existingTasks = JSON.parse(localStorage.getItem('TASKS')) || [];
 
             <ul className="bg-white rounded-xl flex flex-col gap-1 transition-all text-black">
 
-              <button className="hover:bg-orange-800 hover:text-white px-4 py-2 rounded-t-xl transition-all" onClick={() => {setMood('Exciting'); setMoodPopUp(false) ;
+              <button className="hover:bg-orange-800 hover:text-white px-4 py-2 rounded-t-xl transition-all" onClick={() => {
+                setMood('Exciting'); setMoodPopUp(false) ; setShowMood('Exciting')
               }} >Exciting</button>
               <button className="hover:bg-orange-800 hover:text-white px-4 py-2 rounded-b-xl transition-all" onClick={() => {
-                setMood('Challenging'); setMoodPopUp(false)
+                setMood('Challenging'); setMoodPopUp(false); setShowMood('Challenging')
               }} >Challenging</button>
 
             </ul>

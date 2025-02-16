@@ -27,7 +27,7 @@ export function AddTask({OnSaveTask, onSubmit}){
   const [popUp, setPopUp] = useState(false)
   const [moodPopUp, setMoodPopUp] = useState(false)
   const {HandleCancelTask} = useHandleTask()
-
+  const [showMood, setShowMood] =  useState('Mood')
 
   const objectToSave = {
     ID: uuidv4(),
@@ -38,7 +38,6 @@ export function AddTask({OnSaveTask, onSubmit}){
     mood: mood,
 
   }
-
 
   // Change input size
   // Auto Height for input  taskname and taskdescription
@@ -77,7 +76,7 @@ return(
     <div className="flex  flex-col 
     bg-gradient-to-b from-black bg-gray-700 border 
     w-[80%] lg:w-2/4  mx-auto my-0  text-xl rounded-xl
-    border-white lg:-translate-x-14 px-4 py-1  h-fit " >
+    border-white lg:-translate-x-14 px-4 py-4  h-fit " >
       
 
       {/* INPUTS NAME - DESCRIPTION */}
@@ -133,7 +132,7 @@ return(
           </div>
 
           <button  className="px-2 lg:px-4 border text-white
-          rounded-lg " onClick={() => {setMoodPopUp(!moodPopUp)}}>Mood</button>
+          rounded-lg " onClick={() => {setMoodPopUp(!moodPopUp)}}>{showMood}</button>
           {moodPopUp && 
           <div className="absolute lg:left-0 mt-8 lg:mt-1">
 
@@ -141,10 +140,11 @@ return(
 
             <ul className="bg-white rounded-xl flex flex-col gap-1 transition-all text-black">
 
-              <button className="hover:bg-orange-800 hover:text-white px-4 py-2 rounded-t-xl transition-all" onClick={() => {setMood('Exciting'); setMoodPopUp(false) ;
+              <button className="hover:bg-orange-800 hover:text-white px-4 py-2 rounded-t-xl transition-all" onClick={() => {
+                setMood('Exciting'); setMoodPopUp(false); setShowMood('Exciting')
               }} >Exciting</button>
               <button className="hover:bg-orange-800 hover:text-white px-4 py-2 rounded-b-xl transition-all" onClick={() => {
-                setMood('Challenging'); setMoodPopUp(false)
+                setMood('Challenging'); setMoodPopUp(false); setShowMood('Challenging')
               }} >Challenging</button>
 
             </ul>

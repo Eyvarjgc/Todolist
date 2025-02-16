@@ -142,25 +142,25 @@ export function TaskQuickInfo({checked,task,desc,taskID,date, mood }){
   
      :  
 
-        <div className="taskQuickView p-2 w-full h-12 md:h-[45px] bg-opacity-90 
-      flex  gap-1 bg-gradient-to-l from-black bg-orange-900  rounded-xl  " >
+        <div className="taskQuickView p-4 w-full h-12 md:h-[55px]  bg-opacity-90 
+      flex  gap-1 bg-gradient-to-l from-black bg-orange-900  rounded-xl items-center " >
  
        <span className="  ">
         <input id="default-checkbox" type="checkbox" onChange={(e) => {handleCheckedTask(taskID)}} 
-        value="" checked={checked} class="appearance-none w-4 h-4
-          border  border-white rounded-2xl checked:bg-white mt-1 " />
+        value="" checked={checked} class="appearance-none w-4 h-4 
+          border  border-white rounded-2xl checked:bg-white  " />
  
        </span>
  
  
-       <span className="flex w-full flex-wrap items-center justify-between">
+       <span className="flex w-full flex-wrap justify-between">
  
        <span className="w-fit gap-0">
-         <p className="font-semibold text-wrap w-fit break-all capitalize text-[10px]  sm:text-sm transition-all ">{task}</p>
+         <p className="font-semibold text-wrap w-fit break-all capitalize text-[8px]   sm:text-sm transition-all ">{task}</p>
          <p className="font-thin text-opacity-55 text-gray-50 text-[8px] sm:text-xs  transition-all hidden md:block">{desc}</p>
        </span>
  
-       <span className=" text-gray-50 text-opacity-55 text-[10px] md:text-xs mr-4  transition-all flex">
+       <span className=" text-gray-50 text-opacity-55 text-[10px] md:text-xs mr-4 gap-2  transition-all flex">
          <p>{showDate}</p>
          <span>|</span>
          <p>{mood}</p>
